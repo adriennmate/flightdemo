@@ -1,0 +1,78 @@
+<mvc:View controllerName="cust.matea.sap.flight.zflight.controller.Worklist" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic">
+    <semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false">
+        <semantic:titleHeading>
+            <Title text="{i18n>worklistTitle}" level="H2" />
+        </semantic:titleHeading>
+
+        <semantic:content>
+            <Table
+                id="table"
+                width="auto"
+                items="{
+                    path: '/scarrSet',
+                    sorter: {
+                        path: 'Carrid',
+                        descending: false
+                    }
+                }"
+                noDataText="{worklistView>/tableNoDataText}"
+                busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+                growing="true"
+                growingScrollToLoad="true"
+                updateFinished=".onUpdateFinished"
+            >
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title id="tableHeader" text="{worklistView>/worklistTableTitle}" level="H3" />
+                        <ToolbarSpacer />
+                        <Text text="Légitársaság kódja:" />
+                        <SearchField id="searchFieldCarrid" tooltip="{i18n>worklistSearchTooltip}" placeholder="{i18n>worklistSearchTooltip}" search=".onSearchCarrid">
+                            <layoutData>
+                                <OverflowToolbarLayoutData maxWidth="200px" priority="NeverOverflow" />
+                            </layoutData>
+                        </SearchField>
+                        <Text text="Légitársaság neve:" />
+                        <SearchField id="searchFieldCarrname" tooltip="{i18n>worklistSearchTooltip}" placeholder="{i18n>worklistSearchTooltip}" search=".onSearchCarrname">
+                            <layoutData>
+                                <OverflowToolbarLayoutData maxWidth="200px" priority="NeverOverflow" />
+                            </layoutData>
+                        </SearchField>
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column id="nameColumn">
+                        <Text text="{i18n>carrId}" id="carrIdTxt" />
+                    </Column>
+
+                    <Column id="carrnameColumn">
+                        <Text text="{i18n>carrName}" id="carrNameTxt" />
+                    </Column>
+
+                    <Column id="currCodeColumn">
+                        <Text text="{i18n>currCode}" id="currCodeTxt" />
+                    </Column>
+
+                    <Column id="carrUrlColumn">
+                        <Text text="{i18n>carrUrl}" id="carrUrlTxt" />
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem type="Navigation" press=".onPress">
+                        <cells>
+                            <ObjectIdentifier title="{Carrid}" />
+                            <Text text="{Carrname}" />
+                            <Text text="{Currcode}" />
+                            <Link text="{Url}" target="_blank" href="{Url}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </semantic:content>
+
+        <semantic:sendEmailAction>
+            <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress" />
+        </semantic:sendEmailAction>
+    </semantic:SemanticPage>
+</mvc:View>
