@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog id="piloDialog" title="{i18n>loginTitlePilot}">
+        <Input value="001" valueLiveUpdate="true" width="60%" />
+        <beginButton alignItems="Center">
+            <Button text="{i18n>loginSubmitPilot}" press=".onCloseDialog" id="submit" />
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

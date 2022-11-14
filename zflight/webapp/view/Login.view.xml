@@ -2,8 +2,8 @@
     <Page title="{i18n>homePageTitle}" titleAlignment="Center">
         <content>
             <FlexBox height="500px" alignItems="Center" justifyContent="Center">
-                <Button id="pilot" class="myCustomButton sapUiSmallMarginEnd" text="Pilóta vagyok" width="200px" icon="sap-icon://business-card" />
-                <Button id="traveller" class="sapUiSmallMarginEnd" text="Utas vagyok" width="200px" icon="sap-icon://suitcase" />
+                <Button id="pilot" class="myCustomButton sapUiSmallMarginEnd" text="Pilóta vagyok" width="200px" icon="sap-icon://business-card" press=".onPilot" />
+                <Button id="traveller" class="sapUiSmallMarginEnd" text="Utas vagyok" width="200px" icon="sap-icon://suitcase" press=".onTraveller" />
             </FlexBox>
         </content>
     </Page>

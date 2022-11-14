@@ -1,15 +1,30 @@
-.sapUiSizeCompact .sapMBtnInner {
+#application-custmateasapflightzflight-display-component---login--pilot-inner {
    height: 6rem;
    min-width: 2rem;
-}
-
-.sapMBtn .sapMBtnInner {
    display: flex;
    justify-content: center;
    align-items: center;
 }
 
-.sapMBtnInner {
+#application-custmateasapflightzflight-display-component---login--pilot-content {
+   font-size: 1.4rem;
+   margin: 0;
+   padding: 0;
+   text-align: center;
+   position: relative;
+   border-radius: 0.25rem;
+   text-shadow: none;
+}
+
+#application-custmateasapflightzflight-display-component---login--traveller-inner {
+   height: 6rem;
+   min-width: 2rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+#application-custmateasapflightzflight-display-component---login--traveller-content {
    font-size: 1.4rem;
    margin: 0;
    padding: 0;
@@ -31,4 +46,20 @@
    height: 4.5rem;
    padding-top: 1.25rem;
    padding-bottom: 0.25rem;
+}
+
+#__button0{
+   margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#__input0{
+   margin: 0;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
 }
