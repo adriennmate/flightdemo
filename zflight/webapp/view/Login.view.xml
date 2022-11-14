@@ -1,7 +1,10 @@
-<mvc:View controllerName="cust.matea.sap.flight.zflight.controller.NotFound" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
-    <MessagePage title="{i18n>notFoundTitle}" text="{i18n>notFoundText}" icon="sap-icon://document" id="page" description="">
-        <customDescription>
-            <Link id="link" text="{i18n>backToWorklist}" press=".onLinkPressed" />
-        </customDescription>
-    </MessagePage>
+<mvc:View controllerName="cust.matea.sap.flight.zflight.controller.Login" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
+    <Page title="{i18n>homePageTitle}" titleAlignment="Center">
+        <content>
+            <FlexBox height="500px" alignItems="Center" justifyContent="Center">
+                <Button id="pilot" class="myCustomButton sapUiSmallMarginEnd" text="Pilóta vagyok" width="200px" icon="sap-icon://business-card" />
+                <Button id="traveller" class="sapUiSmallMarginEnd" text="Utas vagyok" width="200px" icon="sap-icon://suitcase" />
+            </FlexBox>
+        </content>
+    </Page>
 </mvc:View>

@@ -1,0 +1,34 @@
+.sapUiSizeCompact .sapMBtnInner {
+   height: 6rem;
+   min-width: 2rem;
+}
+
+.sapMBtn .sapMBtnInner {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.sapMBtnInner {
+   font-size: 1.4rem;
+   margin: 0;
+   padding: 0;
+   text-align: center;
+   position: relative;
+   border-radius: 0.25rem;
+   text-shadow: none;
+}
+
+#__page0-title-inner{
+   font-size: 2rem;
+}
+
+#__page0-intHeader{
+   height: 5rem;
+}
+
+#__page0-intHeader-BarPH{
+   height: 4.5rem;
+   padding-top: 1.25rem;
+   padding-bottom: 0.25rem;
+}

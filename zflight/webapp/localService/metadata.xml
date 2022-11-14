@@ -1,46 +1,79 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
     <edmx:DataServices m:DataServiceVersion="2.0">
         <Schema Namespace="Z_FLIGHT_MATEA_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm" />
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
             <EntityType Name="scarr" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="Mandt" />
-                    <PropertyRef Name="Carrid" />
+                    <PropertyRef Name="Mandt"/>
+                    <PropertyRef Name="Carrid"/>
                 </Key>
-                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Client" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-                <Property Name="Carrid" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Airline" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-                <Property Name="Carrname" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Airline" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-                <Property Name="Currcode" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Airline Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code" />
-                <Property Name="Url" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="URL" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Client" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Carrid" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Airline" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currcode" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="Carrname" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Airline" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Url" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="URL" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="header_to_item" Relationship="Z_FLIGHT_MATEA_SRV.scarr_to_sflight" FromRole="FromRole_scarr_to_sflight" ToRole="ToRole_scarr_to_sflight"/>
             </EntityType>
             <EntityType Name="sflight" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="Mandt" />
-                    <PropertyRef Name="Carrid" />
-                    <PropertyRef Name="Connid" />
+                    <PropertyRef Name="Mandt"/>
+                    <PropertyRef Name="Carrid"/>
+                    <PropertyRef Name="Connid"/>
                 </Key>
-                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Client" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-                <Property Name="Carrid" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Airline" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-                <Property Name="Connid" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Flight Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-                <Property Name="Fldate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-                <Property Name="Price" Type="Edm.Decimal" Nullable="false" Precision="16" Scale="3" sap:unicode="false" sap:unit="Currency" sap:label="Airfare" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Airline Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code" />
-                <Property Name="Planetype" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Plane Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-                <Property Name="Seatsmax" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Max. capacity econ." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-                <Property Name="Seatsocc" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Occupied econ." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-                <Property Name="Paymentsum" Type="Edm.Decimal" Nullable="false" Precision="18" Scale="3" sap:unicode="false" sap:unit="Currency" sap:label="Total" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-                <Property Name="SeatsmaxB" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Max. capacity bus." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-                <Property Name="SeatsoccB" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Occupied bus." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-                <Property Name="SeatsmaxF" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Max. capacity 1st" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-                <Property Name="SeatsoccF" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Occupied 1st" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Client" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Carrid" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Airline" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Connid" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Flight Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Fldate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Price" Type="Edm.Decimal" Nullable="false" Precision="16" Scale="3" sap:unicode="false" sap:unit="Currency" sap:label="Airfare" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Airline Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="Planetype" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Plane Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Seatsmax" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Max. capacity econ." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Seatsocc" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Occupied econ." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Paymentsum" Type="Edm.Decimal" Nullable="false" Precision="18" Scale="3" sap:unicode="false" sap:unit="Currency" sap:label="Total" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SeatsmaxB" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Max. capacity bus." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SeatsoccB" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Occupied bus." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SeatsmaxF" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Max. capacity 1st" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SeatsoccF" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Occupied 1st" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
             </EntityType>
+            <EntityType Name="pilotAirline" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Mandt"/>
+                    <PropertyRef Name="PCode"/>
+                </Key>
+                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Client" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PAirline" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Airline" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PFirstname" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="First name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PLastname" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Last name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PFullname" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PEmail" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="E-Mail Address" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="scarr_to_sflight" sap:content-version="1">
+                <End Type="Z_FLIGHT_MATEA_SRV.scarr" Multiplicity="0..1" Role="FromRole_scarr_to_sflight"/>
+                <End Type="Z_FLIGHT_MATEA_SRV.sflight" Multiplicity="*" Role="ToRole_scarr_to_sflight"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_scarr_to_sflight">
+                        <PropertyRef Name="Carrid"/>
+                        <PropertyRef Name="Mandt"/>
+                    </Principal>
+                    <Dependent Role="ToRole_scarr_to_sflight">
+                        <PropertyRef Name="Carrid"/>
+                        <PropertyRef Name="Mandt"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
             <EntityContainer Name="Z_FLIGHT_MATEA_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
-                <EntitySet Name="scarrSet" EntityType="Z_FLIGHT_MATEA_SRV.scarr" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1" />
-                <EntitySet Name="sflightSet" EntityType="Z_FLIGHT_MATEA_SRV.sflight" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1" />
+                <EntitySet Name="scarrSet" EntityType="Z_FLIGHT_MATEA_SRV.scarr" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="sflightSet" EntityType="Z_FLIGHT_MATEA_SRV.sflight" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="pilotAirlineSet" EntityType="Z_FLIGHT_MATEA_SRV.pilotAirline" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="scarr_to_sflightSet" Association="Z_FLIGHT_MATEA_SRV.scarr_to_sflight" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="scarrSet" Role="FromRole_scarr_to_sflight"/>
+                    <End EntitySet="sflightSet" Role="ToRole_scarr_to_sflight"/>
+                </AssociationSet>
             </EntityContainer>
-            <atom:link rel="self" href="http://huvmsaps4happ.snt-is.com:50000/sap/opu/odata/sap/Z_FLIGHT_MATEA_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom" />
-            <atom:link rel="latest-version" href="http://huvmsaps4happ.snt-is.com:50000/sap/opu/odata/sap/Z_FLIGHT_MATEA_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom" />
+            <atom:link rel="self" href="http://huvmsaps4happ.snt-is.com:50000/sap/opu/odata/sap/Z_FLIGHT_MATEA_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://huvmsaps4happ.snt-is.com:50000/sap/opu/odata/sap/Z_FLIGHT_MATEA_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>
