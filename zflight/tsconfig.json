@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "module": "none",
-    "noEmit": true,
-    "checkJs": true,
-    "allowJs": true,
+    "noEmit": false,
+    "checkJs": false,
+    "allowJs": false,
     "types": [
       "@sapui5/ts-types"
     ]

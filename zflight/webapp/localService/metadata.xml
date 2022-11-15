@@ -36,6 +36,14 @@
                 <Property Name="SeatsmaxF" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Max. capacity 1st" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="SeatsoccF" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Occupied 1st" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
             </EntityType>
+            <EntityType Name="pilotSearch" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PCode"/>
+                </Key>
+                <Property Name="PCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PAirline" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PFullname" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
             <EntityType Name="pilotAirline" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="Mandt"/>
@@ -66,6 +74,7 @@
             <EntityContainer Name="Z_FLIGHT_MATEA_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
                 <EntitySet Name="scarrSet" EntityType="Z_FLIGHT_MATEA_SRV.scarr" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="sflightSet" EntityType="Z_FLIGHT_MATEA_SRV.sflight" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="pilotSearchSet" EntityType="Z_FLIGHT_MATEA_SRV.pilotSearch" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="pilotAirlineSet" EntityType="Z_FLIGHT_MATEA_SRV.pilotAirline" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <AssociationSet Name="scarr_to_sflightSet" Association="Z_FLIGHT_MATEA_SRV.scarr_to_sflight" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="scarrSet" Role="FromRole_scarr_to_sflight"/>

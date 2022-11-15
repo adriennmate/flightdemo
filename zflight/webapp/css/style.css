@@ -56,10 +56,14 @@
     transform: translate(-50%, -50%);
 }
 
-#__input0{
+#application-custmateasapflightzflight-display-component---login--pilotInput{
    margin: 0;
    position: absolute;
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
+}
+
+#__box0{
+   height: -webkit-fill-available;
 }

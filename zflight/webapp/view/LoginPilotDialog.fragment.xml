@@ -1,8 +1,11 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-    <Dialog id="piloDialog" title="{i18n>loginTitlePilot}">
-        <Input value="001" valueLiveUpdate="true" width="60%" />
-        <beginButton alignItems="Center">
-            <Button text="{i18n>loginSubmitPilot}" press=".onCloseDialog" id="submit" />
+    <Dialog id="pilotDialog" title="{i18n>loginTitlePilot}">
+        <Input id="pilotInput" valueHelpOnly="true" valueLiveUpdate="true" width="60%" showValueHelp="true" valueHelpRequest=".onSearchPilot" />
+        <beginButton>
+            <Button text="{i18n>loginSubmitPilot}" press=".onLoginPilot" id="submitLogin" type="Accept" />
         </beginButton>
+        <endButton>
+            <Button text="{i18n>loginCancelPilot}" press=".onCloseDialog" id="cancelLogin" type="Reject" />
+        </endButton>
     </Dialog>
 </core:FragmentDefinition>
