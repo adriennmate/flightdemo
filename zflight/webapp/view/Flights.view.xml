@@ -1,0 +1,90 @@
+<mvc:View controllerName="cust.matea.sap.flight.zflight.controller.Flights" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic">
+    <semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false">
+        <semantic:titleHeading>
+            <Title text="{i18n>flightsTitle}" level="H2" />
+        </semantic:titleHeading>
+
+        <semantic:content>
+            <Table
+                id="table"
+                width="auto"
+                items="{
+                    path: '/sflightSet',
+                    sorter: {
+                        path: 'Carrid',
+                        descending: false
+                    }
+                }"
+                noDataText="{i18n/noDataFound}"
+                growing="true"
+                growingScrollToLoad="true"
+                updateFinished=".onUpdateFinished"
+            >
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title id="tableHeader" />
+                        <ToolbarSpacer />
+                        <Text text="{i18n>carrCode}" />
+                        <SearchField id="searchFieldCarrid" tooltip="{i18n>searchTooltip}" placeholder="{i18n>searchTooltip}" search=".onSearchCarrid">
+                            <layoutData>
+                                <OverflowToolbarLayoutData maxWidth="200px" priority="NeverOverflow" />
+                            </layoutData>
+                        </SearchField>
+                        <Text text="{i18n>connCode}" />
+                        <SearchField id="searchFieldConnid" tooltip="{i18n>searchTooltip}" placeholder="{i18n>searchTooltip}" search=".onSearchConnid">
+                            <layoutData>
+                                <OverflowToolbarLayoutData maxWidth="200px" priority="NeverOverflow" />
+                            </layoutData>
+                        </SearchField>
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column id="carrIdColumn">
+                        <Text text="{i18n>carrId}" id="carrIdTxt" />
+                    </Column>
+
+                    <Column id="connIdColumn">
+                        <Text text="{i18n>connId}" id="connIdTxt" />
+                    </Column>
+
+                    <Column id="flDateColumn">
+                        <Text text="{i18n>flDateName}" id="flDateTxt" />
+                    </Column>
+
+                    <Column id="planeTypeColumn">
+                        <Text text="{i18n>planeType}" id="planeTypeTxt" />
+                    </Column>
+
+                    <Column id="seatMaxColumn">
+                        <Text text="{i18n>seatMax}" id="seatMaxTxt" />
+                    </Column>
+
+                    <Column id="seatSoccColumn">
+                        <Text text="{i18n>seatSocc}" id="seatSoccTxt" />
+                    </Column>
+
+                    <Column id="paymentSumColumn">
+                        <Text text="{i18n>paymentSum}" id="paymentSumTxt" />
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <ObjectIdentifier title="{Carrid}" />
+                            <Text text="{Connid}" />
+                            <Text text="{Fldate}" />
+                            <Text text="{Price}" />
+                            <Text text="{Currency}" />
+                            <Text text="{Planetype}" />
+                            <Text text="{Seatsmax}" />
+                            <Text text="{Seatsocc}" />
+                            <Text text="{Paymentsum}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </semantic:content>
+    </semantic:SemanticPage>
+</mvc:View>

@@ -79,6 +79,14 @@ sap.ui.define(
 
           oInput.setValue(oSelectedItem.getCells()[0].getTitle());
         },
+
+        onTraveller: function () {
+          this.getRouter().navTo("airlines");
+        },
+
+        onLoginPilot: function () {
+          this.getRouter().navTo("flights");
+        },
       }
     );
   }

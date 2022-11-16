@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
     <Dialog id="pilotDialog" title="{i18n>loginTitlePilot}">
-        <Input id="pilotInput" valueHelpOnly="true" valueLiveUpdate="true" width="60%" showValueHelp="true" valueHelpRequest=".onSearchPilot" />
+        <Input id="pilotInput" valueHelpOnly="true" valueLiveUpdate="true" width="30%" showValueHelp="true" valueHelpRequest=".onSearchPilot" />
         <beginButton>
             <Button text="{i18n>loginSubmitPilot}" press=".onLoginPilot" id="submitLogin" type="Accept" />
         </beginButton>
