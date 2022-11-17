@@ -116,11 +116,8 @@ sap.ui.define(
          * @private
          */
         _showObject: function (oItem) {
-          this.getRouter().navTo("object", {
-            objectId: oItem
-              .getBindingContext()
-              .getPath()
-              .substring("/scarrSet".length),
+          this.getRouter().navTo("flightspilot", {
+            objectId: oItem.getCells()[0].getTitle(),
           });
         },
 

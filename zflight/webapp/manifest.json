@@ -125,9 +125,9 @@
           "target": ["airlines"]
         },
         {
-          "pattern": "flights",
-          "name": "flights",
-          "target": ["flights"]
+          "pattern": "sflightSet/{objectId}",
+          "name": "flightspilot",
+          "target": ["flightspilot"]
         },
         {
           "pattern": "scarrSet/{objectId}",
@@ -146,9 +146,9 @@
           "viewId": "airlines",
           "viewLevel": 2
         },
-        "flights": {
+        "flightspilot": {
           "viewName": "Flights",
-          "viewId": "flights",
+          "viewId": "flightspilot",
           "viewLevel": 2
         },
         "object": {

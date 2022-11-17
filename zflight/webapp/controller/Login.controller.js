@@ -72,11 +72,12 @@ sap.ui.define(
           var oSelectedItem = oEvent.getParameter("selectedItem"),
             oInput = this.byId("pilotInput");
 
+          this.Airline = oSelectedItem.getCells()[1].getText();
+
           if (!oSelectedItem) {
             oInput.resetProperty("value");
             return;
           }
-
           oInput.setValue(oSelectedItem.getCells()[0].getTitle());
         },
 
@@ -84,8 +85,16 @@ sap.ui.define(
           this.getRouter().navTo("airlines");
         },
 
-        onLoginPilot: function () {
-          this.getRouter().navTo("flights");
+        onLoginPilot: function (sAirline) {
+          var sInputValue = this.byId("pilotInput").getValue();
+          if (sInputValue === "") {
+            sap.m.MessageBox.error("Kérem adja meg a pilótakódját!", {
+              title: "Error",
+              initialFocus: null,
+            });
+          } else {
+            this.getRouter().navTo("flightspilot", { objectId: this.Airline });
+          }
         },
       }
     );

@@ -6,7 +6,7 @@
 
         <semantic:content>
             <Table
-                id="table"
+                id="tableflights"
                 width="auto"
                 items="{
                     path: '/sflightSet',
@@ -24,12 +24,6 @@
                     <OverflowToolbar>
                         <Title id="tableHeader" />
                         <ToolbarSpacer />
-                        <Text text="{i18n>carrCode}" />
-                        <SearchField id="searchFieldCarrid" tooltip="{i18n>searchTooltip}" placeholder="{i18n>searchTooltip}" search=".onSearchCarrid">
-                            <layoutData>
-                                <OverflowToolbarLayoutData maxWidth="200px" priority="NeverOverflow" />
-                            </layoutData>
-                        </SearchField>
                         <Text text="{i18n>connCode}" />
                         <SearchField id="searchFieldConnid" tooltip="{i18n>searchTooltip}" placeholder="{i18n>searchTooltip}" search=".onSearchConnid">
                             <layoutData>
@@ -49,7 +43,15 @@
                     </Column>
 
                     <Column id="flDateColumn">
-                        <Text text="{i18n>flDateName}" id="flDateTxt" />
+                        <Text text="{i18n>flDate}" id="flDateTxt" />
+                    </Column>
+
+                    <Column id="priceColumn">
+                        <Text text="{i18n>price}" id="priceTxt" />
+                    </Column>
+
+                    <Column id="currencyColumn">
+                        <Text text="{i18n>currency}" id="currencyTxt" />
                     </Column>
 
                     <Column id="planeTypeColumn">
@@ -74,7 +76,9 @@
                         <cells>
                             <ObjectIdentifier title="{Carrid}" />
                             <Text text="{Connid}" />
-                            <Text text="{Fldate}" />
+                            <ObjectAttribute text="{path: 'Fldate',
+		                                            type: 'sap.ui.model.type.Date',
+		                                            formatOptions: {pattern: 'yyyy.MM.dd'} }" />
                             <Text text="{Price}" />
                             <Text text="{Currency}" />
                             <Text text="{Planetype}" />
