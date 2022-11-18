@@ -1,177 +1,174 @@
 {
-  "_version": "1.37.0",
-  "sap.app": {
-    "id": "cust.matea.sap.flight.zflight",
-    "type": "application",
-    "i18n": "i18n/i18n.properties",
-    "applicationVersion": {
-      "version": "1.0.0"
-    },
-    "title": "{{appTitle}}",
-    "description": "{{appDescription}}",
-    "resources": "resources.json",
-    "sourceTemplate": {
-      "id": "@sap/generator-fiori:worklist",
-      "version": "1.7.4",
-      "toolsId": "3f20d3a8-3ceb-4a9b-8749-f48e833ef976"
-    },
-    "dataSources": {
-      "mainService": {
-        "uri": "/sap/opu/odata/sap/Z_FLIGHT_MATEA_SRV/",
-        "type": "OData",
-        "settings": {
-          "odataVersion": "2.0",
-          "annotations": [],
-          "localUri": "localService/metadata.xml"
+    "_version": "1.37.0",
+    "sap.app": {
+        "id": "cust.matea.sap.flight.zflight",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:worklist",
+            "version": "1.7.4",
+            "toolsId": "3f20d3a8-3ceb-4a9b-8749-f48e833ef976"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/Z_FLIGHT_MATEA_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "cust-matea-sap-flight-zflight-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "ZFlight",
+                    "action": "displayFlight",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": ""
+                }
+            }
         }
-      }
     },
-    "crossNavigation": {
-      "inbounds": {
-        "cust-matea-sap-flight-zflight-inbound": {
-          "signature": {
-            "parameters": {},
-            "additionalParameters": "allowed"
-          },
-          "semanticObject": "ZFlight",
-          "action": "displayFlight",
-          "title": "{{flpTitle}}",
-          "subTitle": "{{flpSubtitle}}",
-          "icon": ""
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
         }
-      }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.96.7",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "cust.matea.sap.flight.zflight.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "cust.matea.sap.flight.zflight.view",
+                "controlId": "app",
+                "controlAggregation": "pages",
+                "bypassed": {
+                    "target": [
+                        "notFound"
+                    ]
+                },
+                "async": true
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "login",
+                    "target": [
+                        "login"
+                    ]
+                },
+                {
+                    "pattern": "airlines",
+                    "name": "airlines",
+                    "target": [
+                        "airlines"
+                    ]
+                },
+                {
+                    "pattern": "sflightSet/{objectId}",
+                    "name": "flightspilot",
+                    "target": [
+                        "flightspilot"
+                    ]
+                }
+            ],
+            "targets": {
+                "login": {
+                    "viewName": "Login",
+                    "viewId": "login",
+                    "viewLevel": 1
+                },
+                "airlines": {
+                    "viewName": "Airlines",
+                    "viewId": "airlines",
+                    "viewLevel": 2
+                },
+                "flightspilot": {
+                    "viewName": "Flights",
+                    "viewId": "flightspilot",
+                    "viewLevel": 2
+                },
+                "objectNotFound": {
+                    "viewName": "ObjectNotFound",
+                    "viewId": "objectNotFound"
+                },
+                "notFound": {
+                    "viewName": "NotFound",
+                    "viewId": "notFound"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "cust.matea.sap.flight.zflight.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "app"
+        }
     }
-  },
-  "sap.ui": {
-    "technology": "UI5",
-    "icons": {
-      "icon": "",
-      "favIcon": "",
-      "phone": "",
-      "phone@2": "",
-      "tablet": "",
-      "tablet@2": ""
-    },
-    "deviceTypes": {
-      "desktop": true,
-      "tablet": true,
-      "phone": true
-    }
-  },
-  "sap.ui5": {
-    "flexEnabled": true,
-    "dependencies": {
-      "minUI5Version": "1.96.7",
-      "libs": {
-        "sap.m": {},
-        "sap.ui.core": {},
-        "sap.f": {},
-        "sap.suite.ui.generic.template": {},
-        "sap.ui.comp": {},
-        "sap.ui.generic.app": {},
-        "sap.ui.table": {},
-        "sap.ushell": {}
-      }
-    },
-    "contentDensities": {
-      "compact": true,
-      "cozy": true
-    },
-    "models": {
-      "i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "settings": {
-          "bundleName": "cust.matea.sap.flight.zflight.i18n.i18n"
-        }
-      },
-      "": {
-        "dataSource": "mainService",
-        "preload": true,
-        "settings": {
-          "defaultBindingMode": "TwoWay",
-          "defaultCountMode": "Inline",
-          "refreshAfterChange": false
-        }
-      }
-    },
-    "resources": {
-      "css": [
-        {
-          "uri": "css/style.css"
-        }
-      ]
-    },
-    "routing": {
-      "config": {
-        "routerClass": "sap.m.routing.Router",
-        "viewType": "XML",
-        "viewPath": "cust.matea.sap.flight.zflight.view",
-        "controlId": "app",
-        "controlAggregation": "pages",
-        "bypassed": {
-          "target": ["notFound"]
-        },
-        "async": true
-      },
-      "routes": [
-        {
-          "pattern": "",
-          "name": "login",
-          "target": ["login"]
-        },
-        {
-          "pattern": "airlines",
-          "name": "airlines",
-          "target": ["airlines"]
-        },
-        {
-          "pattern": "sflightSet/{objectId}",
-          "name": "flightspilot",
-          "target": ["flightspilot"]
-        },
-        {
-          "pattern": "scarrSet/{objectId}",
-          "name": "object",
-          "target": ["object"]
-        }
-      ],
-      "targets": {
-        "login": {
-          "viewName": "Login",
-          "viewId": "login",
-          "viewLevel": 1
-        },
-        "airlines": {
-          "viewName": "Airlines",
-          "viewId": "airlines",
-          "viewLevel": 2
-        },
-        "flightspilot": {
-          "viewName": "Flights",
-          "viewId": "flightspilot",
-          "viewLevel": 2
-        },
-        "object": {
-          "viewName": "Object",
-          "viewId": "object",
-          "viewLevel": 3,
-          "title": "{i18n>objectViewTitle}"
-        },
-        "objectNotFound": {
-          "viewName": "ObjectNotFound",
-          "viewId": "objectNotFound"
-        },
-        "notFound": {
-          "viewName": "NotFound",
-          "viewId": "notFound"
-        }
-      }
-    },
-    "rootView": {
-      "viewName": "cust.matea.sap.flight.zflight.view.App",
-      "type": "XML",
-      "async": true,
-      "id": "app"
-    }
-  }
 }

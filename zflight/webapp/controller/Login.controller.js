@@ -1,16 +1,23 @@
 sap.ui.define(
   [
     "./BaseController",
+    "sap/ui/model/json/JSONModel",
     "sap/ui/core/Fragment",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
   ],
-  function (BaseController, Fragment, Filter, FilterOperator) {
+  function (BaseController, JSONModel, Fragment, Filter, FilterOperator) {
     "use strict";
 
     return BaseController.extend(
       "cust.matea.sap.flight.zflight.controller.Login",
       {
+        onInit: function () {
+          var oModel = sap.ui.getCore().getModel("/pilotAirlineSet");
+          var oCore = sap.ui.getCore();
+          var oModeltwo = this.getOwnerComponent().getModel();
+        },
+
         onPilot: function () {
           // create dialog lazily
           if (!this.pDialog) {
@@ -58,14 +65,7 @@ sap.ui.define(
         },
 
         _configValueHelpDialog: function () {
-          var sInputValue = this.byId("pilotInput").getValue(),
-            oModel = this.getView().getModel(),
-            aPilot = oModel.getBindings("/pilotSearchSet");
-
-          aPilot.forEach(function (oPilot) {
-            oPilot.selected = oPilot.PCode === sInputValue;
-          });
-          oModel.setProperty("/pilotSearchSet", aPilot);
+          var sInputValue = this.byId("pilotInput").getValue();
         },
 
         handleValueHelpClose: function (oEvent) {
@@ -87,6 +87,7 @@ sap.ui.define(
 
         onLoginPilot: function (sAirline) {
           var sInputValue = this.byId("pilotInput").getValue();
+          var sPasswod = this.byId("passwordInput").getValue();
           if (sInputValue === "") {
             sap.m.MessageBox.error("Kérem adja meg a pilótakódját!", {
               title: "Error",
