@@ -12,12 +12,6 @@ sap.ui.define(
     return BaseController.extend(
       "cust.matea.sap.flight.zflight.controller.Login",
       {
-        onInit: function () {
-          var oModel = sap.ui.getCore().getModel("/pilotAirlineSet");
-          var oCore = sap.ui.getCore();
-          var oModeltwo = this.getOwnerComponent().getModel();
-        },
-
         onPilot: function () {
           // create dialog lazily
           if (!this.pDialog) {
@@ -31,9 +25,11 @@ sap.ui.define(
         },
 
         onCloseDialog: function () {
-          // note: We don't need to chain to the pDialog promise, since this event-handler
-          // is only called from within the loaded dialog itself.
           this.byId("pilotDialog").close();
+          var oInputCode = this.byId("pilotInput");
+          oInputCode.resetProperty("value");
+          var oInputPw = this.byId("passwordInput");
+          oInputPw.resetProperty("value");
         },
 
         onSearchPilot: function () {
@@ -65,7 +61,14 @@ sap.ui.define(
         },
 
         _configValueHelpDialog: function () {
-          var sInputValue = this.byId("pilotInput").getValue();
+          var sInputValue = this.byId("pilotInput").getValue(),
+            oModel = this.getView().getModel(),
+            aPilot = oModel.getBindings("/pilotSearchSet");
+
+          aPilot.forEach(function (oPilot) {
+            oPilot.selected = oPilot.PCode === sInputValue;
+          });
+          oModel.setProperty("/pilotSearchSet", aPilot);
         },
 
         handleValueHelpClose: function (oEvent) {
@@ -88,13 +91,27 @@ sap.ui.define(
         onLoginPilot: function (sAirline) {
           var sInputValue = this.byId("pilotInput").getValue();
           var sPasswod = this.byId("passwordInput").getValue();
+          var sJelszo = this.getView()
+            .getModel()
+            .getObject(
+              "/pilotAirlineSet(Mandt='100',PCode='" + sInputValue + "')"
+            ).PJelszo;
           if (sInputValue === "") {
             sap.m.MessageBox.error("Kérem adja meg a pilótakódját!", {
               title: "Error",
               initialFocus: null,
             });
           } else {
-            this.getRouter().navTo("flightspilot", { objectId: this.Airline });
+            if (sJelszo !== sPasswod) {
+              sap.m.MessageBox.error("Rossz jelszó!", {
+                title: "Error",
+                initialFocus: null,
+              });
+            } else {
+              this.getRouter().navTo("flightspilot", {
+                objectId: this.Airline,
+              });
+            }
           }
         },
       }

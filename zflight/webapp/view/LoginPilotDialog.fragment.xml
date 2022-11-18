@@ -3,7 +3,7 @@
         <Label id="pilotLabel" text="{i18n>pilotCode}" required="true" />
         <Input id="pilotInput" valueHelpOnly="true" valueLiveUpdate="true" width="30%" showValueHelp="true" valueHelpRequest=".onSearchPilot" />
         <Label id="passwordLabel" text="{i18n>password}" vAlign="Inherit" required="true" />
-        <Input id="passwordInput" type="Password" width="40%" />
+        <Input id="passwordInput" type="Password" width="40%" binding="{/pilotAirlineSet}" />
         <beginButton>
             <Button text="{i18n>loginSubmitPilot}" press=".onLoginPilot" id="submitLogin" type="Accept" />
         </beginButton>
