@@ -19,6 +19,7 @@
                 growing="true"
                 growingScrollToLoad="true"
                 updateFinished=".onUpdateFinished"
+                mode="SingleSelectLeft"
             >
                 <headerToolbar>
                     <OverflowToolbar>

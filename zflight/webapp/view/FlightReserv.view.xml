@@ -1,0 +1,13 @@
+<mvc:View controllerName="cust.matea.sap.flight.zflight.controller.FlightReserv" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic">
+    <!-- <Page title="{i18n>flightReservTitle}">
+        <content> -->
+    <Panel headerText="{/panelHeaderText}" class="sapUiResponsiveMargin" width="auto">
+        <form:SimpleForm editable="true" layout="ColumnLayout">
+            <Label id="cityFromLabel" text="{i18n>cityFrom}" vAlign="Inherit" required="true" />
+            <Input id="cityFromInput" valueHelpOnly="true" valueLiveUpdate="true" width="100%" showValueHelp="true" valueHelpRequest=".onSearchCityFrom" />
+        </form:SimpleForm>
+    </Panel>
+    <!-- </FlexBox>
+        </content> -->
+    <!-- </Page> -->
+</mvc:View>

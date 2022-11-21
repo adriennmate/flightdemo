@@ -85,7 +85,7 @@ sap.ui.define(
         },
 
         onTraveller: function () {
-          this.getRouter().navTo("airlines");
+          this.getRouter().navTo("flightreserv");
         },
 
         onLoginPilot: function (sAirline) {
@@ -94,7 +94,7 @@ sap.ui.define(
           var sJelszo = this.getView()
             .getModel()
             .getObject(
-              "/pilotAirlineSet(Mandt='100',PCode='" + sInputValue + "')"
+              "/pilotAirlineSet('" + sInputValue + "')"
             ).PJelszo;
           if (sInputValue === "") {
             sap.m.MessageBox.error("Kérem adja meg a pilótakódját!", {
@@ -107,6 +107,8 @@ sap.ui.define(
                 title: "Error",
                 initialFocus: null,
               });
+              var oInputPw = this.byId("passwordInput");
+              oInputPw.resetProperty("value");
             } else {
               this.getRouter().navTo("flightspilot", {
                 objectId: this.Airline,

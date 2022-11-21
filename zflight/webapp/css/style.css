@@ -88,6 +88,15 @@
    transform: translate(-50%, -50%);
 }
 
-#__box0{
+#application-custmateasapflightzflight-display-component---login--flexLogin{
    height: -webkit-fill-available;
+}
+
+#application-custmateasapflightzflight-display-component---flightReserv--flexFlightReserv{
+   height: -webkit-fill-available;
+   margin-top: 5rem;
+}
+
+#application-custmateasapflightzflight-display-component---flightReserv--cityFromLabel-text{
+   top: 70%;  
 }

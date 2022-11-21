@@ -136,6 +136,13 @@
                     "target": [
                         "flightspilot"
                     ]
+                },
+                {
+                    "pattern": "fightreserv",
+                    "name": "flightreserv",
+                    "target": [
+                        "flightreserv"
+                    ]
                 }
             ],
             "targets": {
@@ -152,6 +159,11 @@
                 "flightspilot": {
                     "viewName": "Flights",
                     "viewId": "flightspilot",
+                    "viewLevel": 2
+                },
+                "flightreserv": {
+                    "viewName": "FlightReserv",
+                    "viewId": "flightReserv",
                     "viewLevel": 2
                 },
                 "objectNotFound": {
