@@ -24,7 +24,95 @@
             </FlexBox>
         </Panel>
         <Panel id="tablePanel" width="auto">
-            <!-- Táblázat majd  -->
+            <Table
+                id="tableflightreserv"
+                width="auto"
+                items="{
+                    path: '/spfliSet',
+                    sorter: {
+                        path: 'Carrid',
+                        descending: false
+                    }
+                }"
+                noDataText="{i18n/noFlights}"
+                growing="true"
+                growingScrollToLoad="true"
+                mode="SingleSelectLeft"
+            >
+                <columns>
+                    <Column id="carrIdColumn" width="7em">
+                        <Text text="{i18n>carrId}" id="carrIdTxt" />
+                    </Column>
+
+                    <Column id="connIdColumn">
+                        <Text text="{i18n>connId}" id="connIdTxt" />
+                    </Column>
+
+                    <Column id="countryFromColumn">
+                        <Text text="{i18n>countryFrom}" id="countryFromTxt" />
+                    </Column>
+
+                    <Column id="cityFromColumn">
+                        <Text text="{i18n>cityFrom}" id="cityFromTxt" />
+                    </Column>
+
+                    <Column id="airpFromColumn">
+                        <Text text="{i18n>iataFrom}" id="airpFromTxt" />
+                    </Column>
+
+                    <Column id="countryToColumn">
+                        <Text text="{i18n>countryTo}" id="countryToTxt" />
+                    </Column>
+
+                    <Column id="cityToColumn">
+                        <Text text="{i18n>cityTo}" id="cityToTxt" />
+                    </Column>
+
+                    <Column id="airpToColumn">
+                        <Text text="{i18n>iataTo}" id="airpToTxt" />
+                    </Column>
+
+                    <Column id="flTimeColumn">
+                        <Text text="{i18n>flTime}" id="flTimeTxt" />
+                    </Column>
+
+                    <Column id="depTimeColumn">
+                        <Text text="{i18n>depTime}" id="depTimeTxt" />
+                    </Column>
+
+                    <Column id="arrTimeColumn">
+                        <Text text="{i18n>arrTime}" id="arrTimeTxt" />
+                    </Column>
+
+                    <Column id="distanceColumn">
+                        <Text text="{i18n>distance}" id="distanceTxt" />
+                    </Column>
+
+                    <Column id="distIdColumn" width="8em">
+                        <Text text="{i18n>distId}" id="distIdTxt" />
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <ObjectIdentifier title="{Carrid}" />
+                            <Text text="{Connid}" />
+                            <Text text="{Countryfr}" />
+                            <Text text="{Cityfrom}" />
+                            <Text text="{Airpfrom}" />
+                            <Text text="{Countryto}" />
+                            <Text text="{Cityto}" />
+                            <Text text="{Airpto}" />
+                            <Text text="{Fltime}" />
+                            <Text text="{Deptime}" />
+                            <Text text="{Arrtime}" />
+                            <Text text="{Distance}" />
+                            <Text text="{Distid}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
         </Panel>
     </Page>
 </mvc:View>
