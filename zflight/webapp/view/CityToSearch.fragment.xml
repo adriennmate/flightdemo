@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <TableSelectDialog
+        noDataText="{i18n>noCity}"
+        title="{i18n>citySearch}"
+        search=".handleSearchCity"
+        confirm=".handleValueHelpCloseCityTo"
+        cancel=".handleValueHelpCloseCityTo"
+        growing='false'
+        contentWidth="100px"
+        contentHeight="500px"
+        resizable="true"
+        items="{
+			path : '/citySearchSet',  
+			sorter : {
+				path : 'City',
+				descending : false
+			}
+		}"
+    >
+        <ColumnListItem selected="{selected}">
+            <cells>
+                <ObjectIdentifier title="{City}" />
+                <Text text="{Country}" />
+            </cells>
+        </ColumnListItem>
+        <columns>
+            <Column width="7em">
+                <header>
+                    <Text text="{i18n>city}" />
+                </header>
+            </Column>
+            <Column width="7em" demandPopin="true">
+                <header>
+                    <Text text="{i18n>country}" />
+                </header>
+            </Column>
+        </columns>
+    </TableSelectDialog>
+</core:FragmentDefinition>

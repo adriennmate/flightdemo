@@ -40,18 +40,6 @@
                 <Property Name="PAirline" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="PFullname" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
             </EntityType>
-            <EntityType Name="pilotAirline" sap:content-version="1">
-                <Key>
-                    <PropertyRef Name="PCode"/>
-                </Key>
-                <Property Name="PCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="PAirline" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Airline" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="PFirstname" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="First name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="PLastname" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Last name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="PFullname" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="PEmail" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="E-Mail Address" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="PJelszo" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-            </EntityType>
             <EntityType Name="spfli" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="Carrid"/>
@@ -73,6 +61,36 @@
                 <Property Name="Fltype" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Charter" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Period" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="n day(s) later" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
             </EntityType>
+            <EntityType Name="pilotAirline" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PCode"/>
+                </Key>
+                <Property Name="PCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PAirline" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Airline" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PFirstname" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="First name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PLastname" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Last name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PFullname" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PEmail" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="E-Mail Address" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PJelszo" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="citySearch" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="City"/>
+                    <PropertyRef Name="Country"/>
+                </Key>
+                <Property Name="City" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="iataSearch" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="City"/>
+                    <PropertyRef Name="Country"/>
+                    <PropertyRef Name="Airport"/>
+                </Key>
+                <Property Name="City" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Airport" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
             <Association Name="scarr_to_sflight" sap:content-version="1">
                 <End Type="Z_FLIGHT_MATEA_SRV.scarr" Multiplicity="0..1" Role="FromRole_scarr_to_sflight"/>
                 <End Type="Z_FLIGHT_MATEA_SRV.sflight" Multiplicity="*" Role="ToRole_scarr_to_sflight"/>
@@ -89,8 +107,10 @@
                 <EntitySet Name="scarrSet" EntityType="Z_FLIGHT_MATEA_SRV.scarr" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="sflightSet" EntityType="Z_FLIGHT_MATEA_SRV.sflight" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="pilotSearchSet" EntityType="Z_FLIGHT_MATEA_SRV.pilotSearch" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="pilotAirlineSet" EntityType="Z_FLIGHT_MATEA_SRV.pilotAirline" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="spfliSet" EntityType="Z_FLIGHT_MATEA_SRV.spfli" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="pilotAirlineSet" EntityType="Z_FLIGHT_MATEA_SRV.pilotAirline" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="citySearchSet" EntityType="Z_FLIGHT_MATEA_SRV.citySearch" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="iataSearchSet" EntityType="Z_FLIGHT_MATEA_SRV.iataSearch" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <AssociationSet Name="scarr_to_sflightSet" Association="Z_FLIGHT_MATEA_SRV.scarr_to_sflight" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="scarrSet" Role="FromRole_scarr_to_sflight"/>
                     <End EntitySet="sflightSet" Role="ToRole_scarr_to_sflight"/>

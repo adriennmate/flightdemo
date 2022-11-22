@@ -1,13 +1,30 @@
-<mvc:View controllerName="cust.matea.sap.flight.zflight.controller.FlightReserv" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic">
-    <!-- <Page title="{i18n>flightReservTitle}">
-        <content> -->
-    <Panel headerText="{/panelHeaderText}" class="sapUiResponsiveMargin" width="auto">
-        <form:SimpleForm editable="true" layout="ColumnLayout">
-            <Label id="cityFromLabel" text="{i18n>cityFrom}" vAlign="Inherit" required="true" />
-            <Input id="cityFromInput" valueHelpOnly="true" valueLiveUpdate="true" width="100%" showValueHelp="true" valueHelpRequest=".onSearchCityFrom" />
-        </form:SimpleForm>
-    </Panel>
-    <!-- </FlexBox>
-        </content> -->
-    <!-- </Page> -->
+<mvc:View controllerName="cust.matea.sap.flight.zflight.controller.FlightReserv" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+    <Page title="{i18n>flightReservTitle}">
+        <Panel id="searchPanel" class="sapUiLargeMarginTop" width="auto">
+            <form:SimpleForm editable="true" layout="ColumnLayout">
+                <Label id="cityFromLabel" text="{i18n>cityFrom}" vAlign="Inherit" required="true" />
+                <Input id="cityFromInput" valueHelpOnly="true" valueLiveUpdate="true" width="60%" showValueHelp="true" valueHelpRequest=".onSearchCityFrom" />
+                <Label id="iataFromLabel" text="{i18n>iataFrom}" vAlign="Inherit" required="true" />
+                <Input id="iataFromInput" valueHelpOnly="true" valueLiveUpdate="true" width="20%" showValueHelp="true" valueHelpRequest=".onSearchIataFrom" />
+                <Label id="dateFromLabel" text="{i18n>dateFrom}" vAlign="Inherit" required="true" />
+                <DatePicker id="dateFromDp" placeholder="{i18n>datePlaceHolder}" change="handleChange" class="sapUiSmallMarginBottom" width="42%" valueFormat="yyyy.MM.dd" displayFormat="yyyy.MM.dd" />
+
+                <Label id="cityToLabel" text="{i18n>cityTo}" vAlign="Inherit" required="true" />
+                <Input id="cityToInput" valueHelpOnly="true" valueLiveUpdate="true" width="60%" showValueHelp="true" valueHelpRequest=".onSearchCityTo" />
+                <Label id="iataToLabel" text="{i18n>iataTo}" vAlign="Inherit" required="true" />
+                <Input id="iataToInput" valueHelpOnly="true" valueLiveUpdate="true" width="20%" showValueHelp="true" valueHelpRequest=".onSearchIataTo" />
+                <Label id="dateFromBackLabel" text="{i18n>dateFromBack}" vAlign="Inherit" required="true" />
+                <DatePicker id="dateFromBackDp" placeholder="{i18n>datePlaceHolder}" change="handleChange" class="sapUiSmallMarginBottom" width="42%" valueFormat="yyyy.MM.dd" displayFormat="yyyy.MM.dd" />
+            </form:SimpleForm>
+            <FlexBox id="buttonsFlex" alignItems="Center" justifyContent="Center">
+                <Button id="returButton" text="{i18n>retur}" press=".onRetur" width="90%" class="sapUiMediumMarginEnd" icon="sap-icon://flight" />
+                <Button id="notReturButton" text="{i18n>notRetur}" press=".onNotRetur" width="90%" class="sapUiMediumMarginEnd" icon="sap-icon://flight" />
+                <Button id="searchButton" text="{i18n>search}" press=".onSearch" width="90%" class="sapUiMediumMarginEnd" icon="sap-icon://search" />
+                <Button id="clearButton" text="{i18n>clear}" press=".onClear" width="90%" class="sapUiMediumMarginEnd" icon="sap-icon://clear-filter" />
+            </FlexBox>
+        </Panel>
+        <Panel id="tablePanel" width="auto">
+            <!-- Táblázat majd  -->
+        </Panel>
+    </Page>
 </mvc:View>
