@@ -11,6 +11,14 @@ sap.ui.define(
       return BaseController.extend(
         "cust.matea.sap.flight.zflight.controller.FlightReserv",
         {
+          onInit: function(){
+            var oInputIataFrom = this.byId("iataFromInput");
+            oInputIataFrom.setEnabled(false);
+            var oInputIataTo = this.byId("iataToInput");
+            oInputIataTo.setEnabled(false);
+            var oButtonRet = this.byId("returButton");
+            oButtonRet.setEnabled(false);
+          },
           onSearchCityFrom: function(){
             var oView = this.getView();
 
@@ -26,7 +34,6 @@ sap.ui.define(
             }
             this._pValueHelpDialogFrom.then(
               function (oValueHelpDialogFrom) {
-                this._configValueHelpDialogCityFrom();
                 oValueHelpDialogFrom.open();
               }.bind(this)
             );
@@ -46,8 +53,8 @@ sap.ui.define(
             }
             this._pValueHelpDialogFromIata.then(
               function (oValueHelpDialogFromIata) {
-                this._configValueHelpDialogIataFrom();
                 oValueHelpDialogFromIata.open();
+                this._filteringIataFrom()
               }.bind(this)
             );
           },
@@ -66,7 +73,6 @@ sap.ui.define(
             }
             this._pValueHelpDialogTo.then(
               function (oValueHelpDialogTo) {
-                this._configValueHelpDialogCityTo();
                 oValueHelpDialogTo.open();
               }.bind(this)
             );
@@ -86,46 +92,57 @@ sap.ui.define(
             }
             this._pValueHelpDialogToIata.then(
               function (oValueHelpDialogToIata) {
-                this._configValueHelpDialogIataTo();
                 oValueHelpDialogToIata.open();
+                this._filteringIataTo()
               }.bind(this)
             );
           },
           onRetur: function(){
-
+            var oButtonNotRet = this.byId("notReturButton");
+            oButtonNotRet.setEnabled(true);
+            var oButtonRet = this.byId("returButton");
+            oButtonRet.setEnabled(false);
+            var oDateBack = this.byId("dateFromBackDp");
+            oDateBack.setEnabled(true);
           },
           onNotRetur: function(){
-
+            var oButtonNotRet = this.byId("notReturButton");
+            oButtonNotRet.setEnabled(false);
+            var oButtonRet = this.byId("returButton");
+            oButtonRet.setEnabled(true);
+            var oDateBack = this.byId("dateFromBackDp");
+            oDateBack.setEnabled(false);
           },
           onSearch: function(){
-
+  
           },
           onClear: function(){
+            var oInputCityFrom = this.byId("cityFromInput");
+            oInputCityFrom.resetProperty("value");
 
-          },
+            var oInputCityTo = this.byId("cityToInput");
+            oInputCityTo.resetProperty("value");
 
-          _configValueHelpDialogCityFrom: function () {
-            var sInputValueCityFrom = this.byId("cityFromInput").getValue(),
-              oModel = this.getView().getModel(),
-              aCityFrom = oModel.getBindings("/citySearchSet");
-          },
+            var oInputIataFrom = this.byId("iataFromInput");
+            oInputIataFrom.resetProperty("value");
+            oInputIataFrom.setEnabled(false);
 
-          _configValueHelpDialogCityTo: function () {
-            var sInputValueCityTo = this.byId("cityToInput").getValue(),
-              oModel = this.getView().getModel(),
-              aCityTo = oModel.getBindings("/citySearchSet");
-          },
-          
-          _configValueHelpDialogIataFrom: function () {
-            var sInputValueCityFrom = this.byId("iataFromInput").getValue(),
-              oModel = this.getView().getModel(),
-              aIataFrom = oModel.getBindings("/iataSearchSet");
-          },
+            var oInputIataTo = this.byId("iataToInput");
+            oInputIataTo.resetProperty("value");
+            oInputIataTo.setEnabled(false);
 
-          _configValueHelpDialogIataTo: function () {
-            var sInputValueCityTo = this.byId("iataToInput").getValue(),
-              oModel = this.getView().getModel(),
-              aIataTo = oModel.getBindings("/iataSearchSet");
+            var oDateBack = this.byId("dateFromBackDp");
+            oDateBack.resetProperty("value");
+            oDateBack.setEnabled(true);
+
+            var oDate = this.byId("dateFromDp");
+            oDate.resetProperty("value");
+
+            var oButtonNotRet = this.byId("notReturButton");
+            oButtonNotRet.setEnabled(true);
+            var oButtonRet = this.byId("returButton");
+            oButtonRet.setEnabled(false);
+
           },
 
           handleValueHelpCloseCityFrom: function (oEvent) {
@@ -133,6 +150,10 @@ sap.ui.define(
               oInput = this.byId("cityFromInput");
   
             oInput.setValue(oSelectedItem.getCells()[0].getTitle());
+            if(oSelectedItem !==""){
+              var oInputIataFrom = this.byId("iataFromInput");
+              oInputIataFrom.setEnabled(true);
+            }
           },
 
           handleValueHelpCloseCityTo: function (oEvent) {
@@ -140,6 +161,9 @@ sap.ui.define(
               oInput = this.byId("cityToInput");
   
             oInput.setValue(oSelectedItem.getCells()[0].getTitle());
+            if(oSelectedItem !==""){
+              var oInputIataTo = this.byId("iataToInput");
+              oInputIataTo.setEnabled(true)};
           },
 
           handleValueHelpCloseIataFrom: function (oEvent) {
@@ -169,6 +193,30 @@ sap.ui.define(
             var oBinding = oEvent.getSource().getBinding("items");
             oBinding.filter([oFilter]);
           },
+
+          _filteringIataFrom: function(){
+            var sCityFrom = this.byId("cityFromInput").getValue();
+            if(sCityFrom !==""){
+              var aFilter = [];
+              aFilter = [
+                new Filter("City", FilterOperator.Contains, sCityFrom),];
+  
+              var oTable = this.byId("iataFrom");
+              oTable.getBinding("items").filter(aFilter, "Application");
+            };
+          },
+
+          _filteringIataTo: function(){
+            var sCityTo = this.byId("cityToInput").getValue();
+            if(sCityTo !==""){
+              var aFilter = [];
+              aFilter = [
+                new Filter("City", FilterOperator.Contains, sCityTo),];
+  
+              var oTable = this.byId("iataTo");
+              oTable.getBinding("items").filter(aFilter, "Application");
+            };
+          }
         }
       );
     }
