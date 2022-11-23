@@ -35,8 +35,7 @@
                     }
                 }"
                 noDataText="{i18n/noFlights}"
-                growing="true"
-                growingScrollToLoad="true"
+                growing="false"
                 mode="SingleSelectLeft"
             >
                 <columns>
@@ -72,10 +71,6 @@
                         <Text text="{i18n>iataTo}" id="airpToTxt" />
                     </Column>
 
-                    <Column id="flTimeColumn">
-                        <Text text="{i18n>flTime}" id="flTimeTxt" />
-                    </Column>
-
                     <Column id="depTimeColumn">
                         <Text text="{i18n>depTime}" id="depTimeTxt" />
                     </Column>
@@ -104,9 +99,12 @@
                             <Text text="{Countryto}" />
                             <Text text="{Cityto}" />
                             <Text text="{Airpto}" />
-                            <Text text="{Fltime}" />
-                            <Text text="{Deptime}" />
-                            <Text text="{Arrtime}" />
+                            <Text text="{path:'Deptime',
+                                         type: 'sap.ui.model.odata.type.Time',
+                                         formatOptions: { pattern : 'HH:mm:ss'} }" />
+                            <Text text="{path:'Arrtime',
+                                         type: 'sap.ui.model.odata.type.Time',
+                                         formatOptions: { pattern : 'HH:mm:ss'} }" />
                             <Text text="{Distance}" />
                             <Text text="{Distid}" />
                         </cells>
