@@ -223,16 +223,16 @@ sap.ui.define(
           var sIataFrom = this.byId("iataFromInput").getValue();
           var sCityTo = this.byId("cityToInput").getValue();
           var sIataTo = this.byId("iataToInput").getValue();
-          var sDateFrom = this.byId("dateFromDp").getValue();
-          var sDateFromBack = this.byId("dateFromBackDp").getValue();
+          var sDateFrom = this.byId("dateFromDp").getDateValue();
+          var sDateFromBack = this.byId("dateFromBackDp").getDateValue();
           var aTableSearchState = [];
           aTableSearchState = [
             new Filter("Cityfrom", FilterOperator.Contains, sCityFrom),
             new Filter("Airpfrom", FilterOperator.Contains, sIataFrom),
             new Filter("Cityto", FilterOperator.Contains, sCityTo),
             new Filter("Airpto", FilterOperator.Contains, sIataTo),
-            // new Filter("Deptime", FilterOperator.Contains, sDateFrom),
-            // new Filter("Arrtime", FilterOperator.Contains, sDateFromBack),
+            new Filter("Fldate", FilterOperator.EQ, sDateFrom),
+            new Filter("Fldateback", FilterOperator.EQ, sDateFromBack),
           ];
           var oTable = this.byId("tableflightreserv");
           oTable.getBinding("items").filter(aTableSearchState, "Application");

@@ -16,8 +16,7 @@
                     }
                 }"
                 noDataText="{i18n/noDataFound}"
-                growing="true"
-                growingScrollToLoad="true"
+                growing="false"
                 updateFinished=".onUpdateFinished"
                 mode="SingleSelectLeft"
             >

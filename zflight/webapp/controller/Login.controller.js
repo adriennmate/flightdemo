@@ -91,17 +91,15 @@ sap.ui.define(
         onLoginPilot: function (sAirline) {
           var sInputValue = this.byId("pilotInput").getValue();
           var sPasswod = this.byId("passwordInput").getValue();
-          var sJelszo = this.getView()
-            .getModel()
-            .getObject(
-              "/pilotAirlineSet('" + sInputValue + "')"
-            ).PJelszo;
           if (sInputValue === "") {
             sap.m.MessageBox.error("Kérem adja meg a pilótakódját!", {
               title: "Error",
               initialFocus: null,
             });
           } else {
+            var sJelszo = this.getView()
+              .getModel()
+              .getObject("/pilotAirlineSet('" + sInputValue + "')").PJelszo;
             if (sJelszo !== sPasswod) {
               sap.m.MessageBox.error("Rossz jelszó!", {
                 title: "Error",
