@@ -219,40 +219,89 @@ sap.ui.define(
           }
         },
         onSearch: function (oEvent) {
+          /*Adatok lekérése*/
+          var aTableSearchState = [];
           var sCityFrom = this.byId("cityFromInput").getValue();
           var sIataFrom = this.byId("iataFromInput").getValue();
           var sCityTo = this.byId("cityToInput").getValue();
           var sIataTo = this.byId("iataToInput").getValue();
           var sDateFrom = this.byId("dateFromDp").getDateValue();
           var sDateFromBack = this.byId("dateFromBackDp").getDateValue();
-          if (sCityFrom === "") {
-            sap.m.MessageBox.error("Kérem adja meg honnan utazik!", {
-              title: "Error",
-              initialFocus: null,
-            });
+          var oButtonRet = this.byId("returButton");
+
+          if (oButtonRet.getEnabled() == true) {
+            if (
+              sCityFrom === "" ||
+              sIataFrom === "" ||
+              sCityTo === "" ||
+              sIataTo === "" ||
+              sDateFrom == null
+            ) {
+              sap.m.MessageBox.error(
+                "A csillaggal jelölt mezők kitöltése kötelező!",
+                {
+                  title: "Error",
+                  initialFocus: null,
+                }
+              );
+            } else {
+              var oTempDateFrom = new Date(
+                sDateFrom.setHours("00", "00", "00", "00")
+              );
+              oTempDateFrom = new Date(
+                oTempDateFrom.getTime() +
+                  oTempDateFrom.getTimezoneOffset() * -60000
+              );
+              aTableSearchState = [
+                new Filter("Cityfrom", FilterOperator.Contains, sCityFrom),
+                new Filter("Airpfrom", FilterOperator.Contains, sIataFrom),
+                new Filter("Cityto", FilterOperator.Contains, sCityTo),
+                new Filter("Airpto", FilterOperator.Contains, sIataTo),
+                new Filter("Fldate", FilterOperator.EQ, oTempDateFrom),
+              ];
+            }
+          } else if (oButtonRet.getEnabled() == false) {
+            if (
+              sCityFrom === "" ||
+              sIataFrom === "" ||
+              sCityTo === "" ||
+              sIataTo === "" ||
+              sDateFrom == null ||
+              sDateFromBack == null
+            ) {
+              sap.m.MessageBox.error(
+                "A csillaggal jelölt mezők kitöltése kötelező!",
+                {
+                  title: "Error",
+                  initialFocus: null,
+                }
+              );
+            } else {
+              var oTempDateFrom = new Date(
+                sDateFrom.setHours("00", "00", "00", "00")
+              );
+              oTempDateFrom = new Date(
+                oTempDateFrom.getTime() +
+                  oTempDateFrom.getTimezoneOffset() * -60000
+              );
+              var oTempDateFromBack = new Date(
+                sDateFromBack.setHours("00", "00", "00", "00")
+              );
+              oTempDateFromBack = new Date(
+                oTempDateFromBack.getTime() +
+                  oTempDateFromBack.getTimezoneOffset() * -60000
+              );
+              aTableSearchState = [
+                new Filter("Cityfrom", FilterOperator.Contains, sCityFrom),
+                new Filter("Airpfrom", FilterOperator.Contains, sIataFrom),
+                new Filter("Cityto", FilterOperator.Contains, sCityTo),
+                new Filter("Airpto", FilterOperator.Contains, sIataTo),
+                new Filter("Fldate", FilterOperator.EQ, oTempDateFrom),
+                new Filter("Fldateback", FilterOperator.EQ, oTempDateFromBack),
+              ];
+            }
           }
-          var oTempDateFrom = new Date(
-            sDateFrom.setHours("00", "00", "00", "00")
-          );
-          oTempDateFrom = new Date(
-            oTempDateFrom.getTime() + oTempDateFrom.getTimezoneOffset() * -60000
-          );
-          var oTempDateFromBack = new Date(
-            sDateFromBack.setHours("00", "00", "00", "00")
-          );
-          oTempDateFromBack = new Date(
-            oTempDateFromBack.getTime() +
-              oTempDateFromBack.getTimezoneOffset() * -60000
-          );
-          var aTableSearchState = [];
-          aTableSearchState = [
-            new Filter("Cityfrom", FilterOperator.Contains, sCityFrom),
-            new Filter("Airpfrom", FilterOperator.Contains, sIataFrom),
-            new Filter("Cityto", FilterOperator.Contains, sCityTo),
-            new Filter("Airpto", FilterOperator.Contains, sIataTo),
-            new Filter("Fldate", FilterOperator.EQ, oTempDateFrom),
-            new Filter("Fldateback", FilterOperator.EQ, oTempDateFromBack),
-          ];
+
           var oTable = this.byId("tableflightreserv");
           oTable.getBinding("items").filter(aTableSearchState, "Application");
         },
