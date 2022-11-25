@@ -225,14 +225,33 @@ sap.ui.define(
           var sIataTo = this.byId("iataToInput").getValue();
           var sDateFrom = this.byId("dateFromDp").getDateValue();
           var sDateFromBack = this.byId("dateFromBackDp").getDateValue();
+          if (sCityFrom === "") {
+            sap.m.MessageBox.error("Kérem adja meg honnan utazik!", {
+              title: "Error",
+              initialFocus: null,
+            });
+          }
+          var oTempDateFrom = new Date(
+            sDateFrom.setHours("00", "00", "00", "00")
+          );
+          oTempDateFrom = new Date(
+            oTempDateFrom.getTime() + oTempDateFrom.getTimezoneOffset() * -60000
+          );
+          var oTempDateFromBack = new Date(
+            sDateFromBack.setHours("00", "00", "00", "00")
+          );
+          oTempDateFromBack = new Date(
+            oTempDateFromBack.getTime() +
+              oTempDateFromBack.getTimezoneOffset() * -60000
+          );
           var aTableSearchState = [];
           aTableSearchState = [
             new Filter("Cityfrom", FilterOperator.Contains, sCityFrom),
             new Filter("Airpfrom", FilterOperator.Contains, sIataFrom),
             new Filter("Cityto", FilterOperator.Contains, sCityTo),
             new Filter("Airpto", FilterOperator.Contains, sIataTo),
-            new Filter("Fldate", FilterOperator.EQ, sDateFrom),
-            new Filter("Fldateback", FilterOperator.EQ, sDateFromBack),
+            new Filter("Fldate", FilterOperator.EQ, oTempDateFrom),
+            new Filter("Fldateback", FilterOperator.EQ, oTempDateFromBack),
           ];
           var oTable = this.byId("tableflightreserv");
           oTable.getBinding("items").filter(aTableSearchState, "Application");

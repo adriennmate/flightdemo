@@ -14,7 +14,7 @@
                 <Label id="iataToLabel" text="{i18n>iataTo}" vAlign="Inherit" required="true" />
                 <Input id="iataToInput" valueHelpOnly="true" valueLiveUpdate="true" width="20%" showValueHelp="true" valueHelpRequest=".onSearchIataTo" />
                 <Label id="dateFromBackLabel" text="{i18n>dateFromBack}" vAlign="Inherit" required="true" />
-                <DatePicker id="dateFromBackDp" placeholder="{i18n>datePlaceHolder}" change="handleChange" class="sapUiSmallMarginBottom" width="42%" valueFormat="yyyy.MM.dd" displayFormat="yyyy.MM.dd" />
+                <DatePicker id="dateFromBackDp" placeholder="{i18n>datePlaceHolder}" change="handleChange" class="sapUiSmallMarginBottom" width="42%" valueFormat="yyyy.MM.dd" displayFormat="yyyy.MM.dd" UTC="true" />
             </form:SimpleForm>
             <FlexBox id="buttonsFlex" alignItems="Center" justifyContent="Center">
                 <Button id="returButton" text="{i18n>retur}" press=".onRetur" width="90%" class="sapUiMediumMarginEnd" icon="sap-icon://flight" />
@@ -35,7 +35,7 @@
                     }
                 }"
                 noDataText="{i18n/noFlights}"
-                growing="false"
+                growingThreshold="100"
                 mode="SingleSelectLeft"
             >
                 <columns>
@@ -79,12 +79,8 @@
                         <Text text="{i18n>arrTime}" id="arrTimeTxt" />
                     </Column>
 
-                    <Column id="distanceColumn">
-                        <Text text="{i18n>distance}" id="distanceTxt" />
-                    </Column>
-
-                    <Column id="distIdColumn" width="8em">
-                        <Text text="{i18n>distId}" id="distIdTxt" />
+                    <Column id="date" width="8em">
+                        <Text text="{i18n>distId}" id="dateTxt" />
                     </Column>
                 </columns>
 
@@ -105,8 +101,13 @@
                             <Text text="{path:'Arrtime',
                                          type: 'sap.ui.model.odata.type.Time',
                                          formatOptions: { pattern : 'HH:mm:ss'} }" />
-                            <Text text="{Distance}" />
-                            <Text text="{Distid}" />
+                            <ObjectAttribute
+                                text="{path: 'Fldate',
+		                                 type: 'sap.ui.model.odata.type.DateTime',
+		                                 formatOptions: {pattern: 'yyyy.MM.dd',
+                                                         strictParsing: true,
+                                                         UTC: true} }"
+                            />
                         </cells>
                     </ColumnListItem>
                 </items>
