@@ -55,6 +55,16 @@ sap.ui.define(
           });
         },
 
+        onSelection: function () {
+          // var oItems = oList.getSelectedItems();
+          // for (var i = 0; i < items.length; i++) {
+          //   var item = items[i];
+          //   var context = item.getBindingContext();
+          //   var obj = context.getProperty(null, context);
+          //   alert(obj.value);
+          // }
+        },
+
         onSearchCityFrom: function () {
           var oView = this.getView();
 

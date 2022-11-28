@@ -21,11 +21,13 @@
                 <Button id="notReturButton" text="{i18n>notRetur}" press=".onNotRetur" width="90%" class="sapUiMediumMarginEnd" icon="sap-icon://flight" />
                 <Button id="searchButton" text="{i18n>search}" press=".onSearch" width="90%" class="sapUiMediumMarginEnd" icon="sap-icon://search" />
                 <Button id="clearButton" text="{i18n>clear}" press=".onClear" width="90%" class="sapUiMediumMarginEnd" icon="sap-icon://clear-filter" />
+                <Button id="submitButton" text="{i18n>foglal}" press=".onSubmit" width="90%" class="sapUiMediumMarginEnd" icon="sap-icon://accept" type="Accept" />
             </FlexBox>
         </Panel>
         <Panel id="tablePanel" width="auto">
             <Table
                 id="tableflightreserv"
+                selectionChange="onSelection"
                 width="auto"
                 items="{ path: '/spfliSet', 
                 sorter: { 
