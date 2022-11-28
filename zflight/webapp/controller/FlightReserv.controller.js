@@ -5,8 +5,16 @@ sap.ui.define(
     "sap/ui/core/Fragment",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
+    "sap/ui/core/format/DateFormat",
   ],
-  function (BaseController, JSONModel, Fragment, Filter, FilterOperator) {
+  function (
+    BaseController,
+    JSONModel,
+    Fragment,
+    Filter,
+    FilterOperator,
+    DateFormat
+  ) {
     "use strict";
 
     return BaseController.extend(
@@ -23,7 +31,30 @@ sap.ui.define(
           oInputIataTo.setEnabled(false);
           var oButtonRet = this.byId("returButton");
           oButtonRet.setEnabled(false);
+          var oTable = this.byId("tableflightreserv");
+          oTable.setVisible(false);
         },
+
+        getGroup: function (oContext) {
+          var sDate = new Date(oContext.getProperty("Fldate"));
+          var sDateFormat = DateFormat.getDateInstance({
+            pattern: "yyyy.MM.dd",
+          });
+          var sDatum = sDateFormat.format(sDate);
+          var sOda = oContext.getProperty("Cityfrom");
+          var sVissza = oContext.getProperty("Cityto");
+          return {
+            key: sDatum,
+            text: sOda + " -> " + sVissza,
+          };
+        },
+        getGroupHeader: function (oGroup) {
+          return new sap.m.GroupHeaderListItem({
+            title: oGroup.text,
+            upperCase: false,
+          });
+        },
+
         onSearchCityFrom: function () {
           var oView = this.getView();
 
@@ -118,7 +149,6 @@ sap.ui.define(
           var oDateBack = this.byId("dateFromBackDp");
           oDateBack.setEnabled(false);
         },
-        onSearch: function () {},
         onClear: function () {
           var oInputCityFrom = this.byId("cityFromInput");
           oInputCityFrom.resetProperty("value");
@@ -145,6 +175,9 @@ sap.ui.define(
           oButtonNotRet.setEnabled(true);
           var oButtonRet = this.byId("returButton");
           oButtonRet.setEnabled(false);
+
+          var oTable = this.byId("tableflightreserv");
+          oTable.setVisible(false);
         },
 
         handleValueHelpCloseCityFrom: function (oEvent) {
@@ -221,6 +254,7 @@ sap.ui.define(
         onSearch: function (oEvent) {
           /*Adatok lekérése*/
           var aTableSearchState = [];
+          var oTable = this.byId("tableflightreserv");
           var sCityFrom = this.byId("cityFromInput").getValue();
           var sIataFrom = this.byId("iataFromInput").getValue();
           var sCityTo = this.byId("cityToInput").getValue();
@@ -259,6 +293,7 @@ sap.ui.define(
                 new Filter("Airpto", FilterOperator.Contains, sIataTo),
                 new Filter("Fldate", FilterOperator.EQ, oTempDateFrom),
               ];
+              oTable.setVisible(true);
             }
           } else if (oButtonRet.getEnabled() == false) {
             if (
@@ -299,10 +334,10 @@ sap.ui.define(
                 new Filter("Fldate", FilterOperator.EQ, oTempDateFrom),
                 new Filter("Fldateback", FilterOperator.EQ, oTempDateFromBack),
               ];
+              oTable.setVisible(true);
             }
           }
 
-          var oTable = this.byId("tableflightreserv");
           oTable.getBinding("items").filter(aTableSearchState, "Application");
         },
       }

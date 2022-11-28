@@ -3,16 +3,16 @@
         <Panel id="searchPanel" class="sapUiLargeMarginTop" width="auto">
             <form:SimpleForm editable="true" layout="ColumnLayout">
                 <Label id="cityFromLabel" text="{i18n>cityFrom}" vAlign="Inherit" required="true" />
-                <Input id="cityFromInput" valueHelpOnly="true" valueLiveUpdate="true" width="60%" showValueHelp="true" valueHelpRequest=".onSearchCityFrom" />
+                <Input id="cityFromInput" valueHelpOnly="true" valueLiveUpdate="true" width="60%" showValueHelp="true" valueHelpRequest=".onSearchCityFrom" value="ROME" />
                 <Label id="iataFromLabel" text="{i18n>iataFrom}" vAlign="Inherit" required="true" />
-                <Input id="iataFromInput" valueHelpOnly="true" valueLiveUpdate="true" width="20%" showValueHelp="true" valueHelpRequest=".onSearchIataFrom" />
+                <Input id="iataFromInput" valueHelpOnly="true" valueLiveUpdate="true" width="20%" showValueHelp="true" valueHelpRequest=".onSearchIataFrom" value="FCO" />
                 <Label id="dateFromLabel" text="{i18n>dateFrom}" vAlign="Inherit" required="true" />
                 <DatePicker id="dateFromDp" placeholder="{i18n>datePlaceHolder}" change="handleChange" class="sapUiSmallMarginBottom" width="42%" valueFormat="yyyy.MM.dd" displayFormat="yyyy.MM.dd" />
 
                 <Label id="cityToLabel" text="{i18n>cityTo}" vAlign="Inherit" required="true" />
-                <Input id="cityToInput" valueHelpOnly="true" valueLiveUpdate="true" width="60%" showValueHelp="true" valueHelpRequest=".onSearchCityTo" />
+                <Input id="cityToInput" valueHelpOnly="true" valueLiveUpdate="true" width="60%" showValueHelp="true" valueHelpRequest=".onSearchCityTo" value="TOKYO" />
                 <Label id="iataToLabel" text="{i18n>iataTo}" vAlign="Inherit" required="true" />
-                <Input id="iataToInput" valueHelpOnly="true" valueLiveUpdate="true" width="20%" showValueHelp="true" valueHelpRequest=".onSearchIataTo" />
+                <Input id="iataToInput" valueHelpOnly="true" valueLiveUpdate="true" width="20%" showValueHelp="true" valueHelpRequest=".onSearchIataTo" value="TYO" />
                 <Label id="dateFromBackLabel" text="{i18n>dateFromBack}" vAlign="Inherit" required="true" />
                 <DatePicker id="dateFromBackDp" placeholder="{i18n>datePlaceHolder}" change="handleChange" class="sapUiSmallMarginBottom" width="42%" valueFormat="yyyy.MM.dd" displayFormat="yyyy.MM.dd" UTC="true" />
             </form:SimpleForm>
@@ -27,16 +27,14 @@
             <Table
                 id="tableflightreserv"
                 width="auto"
-                items="{
-                    path: '/spfliSet',
-                    sorter: {
-                        path: 'Carrid',
-                        descending: false
-                    }
-                }"
+                items="{ path: '/spfliSet', 
+                sorter: { 
+                    path: 'Fldate',
+                    group: '.getGroup'}, 
+                    groupHeaderFactory: '.getGroupHeader'}"
                 noDataText="{i18n/noFlights}"
                 growingThreshold="100"
-                mode="SingleSelectLeft"
+                mode="MultiSelect"
             >
                 <columns>
                     <Column id="carrIdColumn" width="7em">
@@ -71,16 +69,16 @@
                         <Text text="{i18n>iataTo}" id="airpToTxt" />
                     </Column>
 
+                    <Column id="flDateColumn" width="8em">
+                        <Text text="{i18n>flDate}" id="flDateTxt" />
+                    </Column>
+
                     <Column id="depTimeColumn">
                         <Text text="{i18n>depTime}" id="depTimeTxt" />
                     </Column>
 
                     <Column id="arrTimeColumn">
                         <Text text="{i18n>arrTime}" id="arrTimeTxt" />
-                    </Column>
-
-                    <Column id="date" width="8em">
-                        <Text text="{i18n>distId}" id="dateTxt" />
                     </Column>
                 </columns>
 
@@ -95,12 +93,6 @@
                             <Text text="{Countryto}" />
                             <Text text="{Cityto}" />
                             <Text text="{Airpto}" />
-                            <Text text="{path:'Deptime',
-                                         type: 'sap.ui.model.odata.type.Time',
-                                         formatOptions: { pattern : 'HH:mm:ss'} }" />
-                            <Text text="{path:'Arrtime',
-                                         type: 'sap.ui.model.odata.type.Time',
-                                         formatOptions: { pattern : 'HH:mm:ss'} }" />
                             <ObjectAttribute
                                 text="{path: 'Fldate',
 		                                 type: 'sap.ui.model.odata.type.DateTime',
@@ -108,6 +100,12 @@
                                                          strictParsing: true,
                                                          UTC: true} }"
                             />
+                            <Text text="{path:'Deptime',
+                                         type: 'sap.ui.model.odata.type.Time',
+                                         formatOptions: { pattern : 'HH:mm:ss'} }" />
+                            <Text text="{path:'Arrtime',
+                                         type: 'sap.ui.model.odata.type.Time',
+                                         formatOptions: { pattern : 'HH:mm:ss'} }" />
                         </cells>
                     </ColumnListItem>
                 </items>
