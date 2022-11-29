@@ -68,10 +68,18 @@ sap.ui.define(
             aDate,
             aDateFormat,
             aDatum;
-          var oItems, j, oConnid, oFldate, oDate, oDateFormat, oDatum;
+          var oItems, j, oConnid, oFldate, oDate, oDateFormat, oDatum, a;
 
           aSelectedItems = this.byId("tableflightreserv").getSelectedItems();
           oItems = this.byId("tableflightreserv").getItems();
+
+          for (a = 0; a < oItems.length; a++) {
+            if (oItems[a]._bGroupHeader == false) {
+              oItems[a]
+                .getMultiSelectControl(/* bCreateIfNotExist = */ true)
+                .setVisible(true);
+            }
+          }
 
           if (aSelectedItems.length) {
             aButtonSubmit = this.byId("submitButton");
@@ -85,7 +93,7 @@ sap.ui.define(
                 pattern: "yyyy.MM.dd",
               });
               aDatum = aDateFormat.format(aDate);
-              for (var j = 0; j < oItems.length; j++) {
+              for (j = 0; j < oItems.length; j++) {
                 if (oItems[j]._bGroupHeader == false) {
                   oConnid = oItems[j].getBindingContext().getProperty("Connid");
                   oFldate = oItems[j].getBindingContext().getProperty("Fldate");
