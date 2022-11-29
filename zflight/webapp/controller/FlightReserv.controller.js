@@ -33,6 +33,8 @@ sap.ui.define(
           oButtonRet.setEnabled(false);
           var oTable = this.byId("tableflightreserv");
           oTable.setVisible(false);
+          var oButtonSubmit = this.byId("submitButton");
+          oButtonSubmit.setVisible(false);
         },
 
         getGroup: function (oContext) {
@@ -56,13 +58,54 @@ sap.ui.define(
         },
 
         onSelection: function () {
-          // var oItems = oList.getSelectedItems();
-          // for (var i = 0; i < items.length; i++) {
-          //   var item = items[i];
-          //   var context = item.getBindingContext();
-          //   var obj = context.getProperty(null, context);
-          //   alert(obj.value);
-          // }
+          var aSelectedItems,
+            i,
+            j,
+            aFlight,
+            aConnid,
+            aFldate,
+            aButtonSubmit,
+            aDate,
+            aDateFormat,
+            aDatum;
+          var oItems, j, oConnid, oFldate, oDate, oDateFormat, oDatum;
+
+          aSelectedItems = this.byId("tableflightreserv").getSelectedItems();
+          oItems = this.byId("tableflightreserv").getItems();
+
+          if (aSelectedItems.length) {
+            aButtonSubmit = this.byId("submitButton");
+            aButtonSubmit.setVisible(true);
+            for (i = 0; i < aSelectedItems.length; i++) {
+              aFlight = aSelectedItems[i];
+              aConnid = aFlight.getBindingContext().getProperty("Connid");
+              aFldate = aFlight.getBindingContext().getProperty("Fldate");
+              aDate = new Date(aFldate);
+              aDateFormat = DateFormat.getDateInstance({
+                pattern: "yyyy.MM.dd",
+              });
+              aDatum = aDateFormat.format(aDate);
+              for (var j = 0; j < oItems.length; j++) {
+                if (oItems[j]._bGroupHeader == false) {
+                  oConnid = oItems[j].getBindingContext().getProperty("Connid");
+                  oFldate = oItems[j].getBindingContext().getProperty("Fldate");
+                  oDate = new Date(oFldate);
+                  oDateFormat = DateFormat.getDateInstance({
+                    pattern: "yyyy.MM.dd",
+                  });
+                  oDatum = oDateFormat.format(oDate);
+                  if (aDatum == oDatum && aConnid !== oConnid) {
+                    oItems[j]
+                      .getMultiSelectControl(/* bCreateIfNotExist = */ true)
+                      .setVisible(false);
+                  }
+                }
+              }
+            }
+          } else {
+            var oButtonSubmit = this.byId("submitButton");
+            oButtonSubmit.setVisible(false);
+          }
         },
 
         onSearchCityFrom: function () {
@@ -188,6 +231,9 @@ sap.ui.define(
 
           var oTable = this.byId("tableflightreserv");
           oTable.setVisible(false);
+
+          var oButtonSubmit = this.byId("submitButton");
+          oButtonSubmit.setVisible(false);
         },
 
         handleValueHelpCloseCityFrom: function (oEvent) {
@@ -349,6 +395,7 @@ sap.ui.define(
           }
 
           oTable.getBinding("items").filter(aTableSearchState, "Application");
+          oTable._getSelectAllCheckbox().setVisible(false);
         },
       }
     );

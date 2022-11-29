@@ -7,14 +7,14 @@
                 <Label id="iataFromLabel" text="{i18n>iataFrom}" vAlign="Inherit" required="true" />
                 <Input id="iataFromInput" valueHelpOnly="true" valueLiveUpdate="true" width="20%" showValueHelp="true" valueHelpRequest=".onSearchIataFrom" value="FCO" />
                 <Label id="dateFromLabel" text="{i18n>dateFrom}" vAlign="Inherit" required="true" />
-                <DatePicker id="dateFromDp" placeholder="{i18n>datePlaceHolder}" change="handleChange" class="sapUiSmallMarginBottom" width="42%" valueFormat="yyyy.MM.dd" displayFormat="yyyy.MM.dd" />
+                <DatePicker id="dateFromDp" placeholder="{i18n>datePlaceHolder}" change="handleChange" class="sapUiSmallMarginBottom" width="42%" valueFormat="yyyy.MM.dd" displayFormat="yyyy.MM.dd" value="2021.09.15" />
 
                 <Label id="cityToLabel" text="{i18n>cityTo}" vAlign="Inherit" required="true" />
                 <Input id="cityToInput" valueHelpOnly="true" valueLiveUpdate="true" width="60%" showValueHelp="true" valueHelpRequest=".onSearchCityTo" value="TOKYO" />
                 <Label id="iataToLabel" text="{i18n>iataTo}" vAlign="Inherit" required="true" />
                 <Input id="iataToInput" valueHelpOnly="true" valueLiveUpdate="true" width="20%" showValueHelp="true" valueHelpRequest=".onSearchIataTo" value="TYO" />
                 <Label id="dateFromBackLabel" text="{i18n>dateFromBack}" vAlign="Inherit" required="true" />
-                <DatePicker id="dateFromBackDp" placeholder="{i18n>datePlaceHolder}" change="handleChange" class="sapUiSmallMarginBottom" width="42%" valueFormat="yyyy.MM.dd" displayFormat="yyyy.MM.dd" UTC="true" />
+                <DatePicker id="dateFromBackDp" placeholder="{i18n>datePlaceHolder}" change="handleChange" class="sapUiSmallMarginBottom" width="42%" valueFormat="yyyy.MM.dd" displayFormat="yyyy.MM.dd" UTC="true" value="2021.09.16" />
             </form:SimpleForm>
             <FlexBox id="buttonsFlex" alignItems="Center" justifyContent="Center">
                 <Button id="returButton" text="{i18n>retur}" press=".onRetur" width="90%" class="sapUiMediumMarginEnd" icon="sap-icon://flight" />
