@@ -9,9 +9,9 @@
                     <f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false" />
                 </f:layout>
                 <f:formContainers>
-                    <f:FormContainer title="{i18n>osszefoglalo}">
+                    <f:FormContainer title="{i18n>elsoJarat}">
                         <f:formElements>
-                            <f:FormElement label="Name">
+                            <f:FormElement label="{i18n>legitarsasag}">
                                 <f:fields>
                                     <Text text="Név" id="nameText" />
                                 </f:fields>
@@ -33,7 +33,7 @@
                             </f:FormElement>
                         </f:formElements>
                     </f:FormContainer>
-                    <f:FormContainer title="Online">
+                    <f:FormContainer title="{i18n>masodikJarat}">
                         <f:formElements>
                             <f:FormElement label="Web">
                                 <f:fields>
