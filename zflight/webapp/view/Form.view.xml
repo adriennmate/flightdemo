@@ -1,0 +1,83 @@
+<core:FragmentDefinition controllerName="cust.matea.sap.flight.zflight.controller.Form" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:semantic="sap.f.semantic">
+    <Page title="{i18n>formTitle}">
+        <VBox id="formVbox">
+            <f:Form id="formFlightData" editable="false">
+                <f:title>
+                    <core:Title text="{i18n>osszefoglalo}" />
+                </f:title>
+                <f:layout>
+                    <f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false" />
+                </f:layout>
+                <f:formContainers>
+                    <f:FormContainer title="{i18n>osszefoglalo}">
+                        <f:formElements>
+                            <f:FormElement label="Name">
+                                <f:fields>
+                                    <Text text="Név" id="nameText" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Street">
+                                <f:fields>
+                                    <Text text="Utca Házszám" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="ZIP Code/City">
+                                <f:fields>
+                                    <Text text="Irányítószám Város" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Country">
+                                <f:fields>
+                                    <Text text="Ország" id="countryText" />
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                    <f:FormContainer title="Online">
+                        <f:formElements>
+                            <f:FormElement label="Web">
+                                <f:fields>
+                                    <Text text="URL" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Twitter">
+                                <f:fields>
+                                    <Text text="TWITTER" />
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                </f:formContainers>
+            </f:Form>
+            <!-- <f:Form id="formPersonalData" editable="true">
+            <f:title>
+                <core:Title text="More" />
+            </f:title>
+            <f:layout>
+                <f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false" />
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer title="Contact data">
+                    <f:formElements>
+                        <f:FormElement label="Email">
+                            <f:fields>
+                                <Text text="{EMail}" />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Tel.">
+                            <f:fields>
+                                <Text text="{Tel}" />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="SMS">
+                            <f:fields>
+                                <Text text="{Sms}" />
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form> -->
+        </VBox>
+    </Page>
+</core:FragmentDefinition>

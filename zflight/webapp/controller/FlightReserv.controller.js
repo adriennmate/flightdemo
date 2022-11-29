@@ -57,6 +57,10 @@ sap.ui.define(
           });
         },
 
+        onSubmit: function () {
+          this.getRouter().navTo("form");
+        },
+
         onSelection: function () {
           var aSelectedItems,
             i,
@@ -209,6 +213,7 @@ sap.ui.define(
           oButtonRet.setEnabled(true);
           var oDateBack = this.byId("dateFromBackDp");
           oDateBack.setEnabled(false);
+          oDateBack.resetProperty("value");
         },
         onClear: function () {
           var oInputCityFrom = this.byId("cityFromInput");
