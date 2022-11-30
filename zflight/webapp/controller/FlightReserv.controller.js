@@ -59,6 +59,7 @@ sap.ui.define(
 
         onSubmit: function () {
           this.getRouter().navTo("form");
+          // this.getRouter().navTo("form", { carrId: this.Airline });
         },
 
         onSelection: function () {
@@ -71,7 +72,8 @@ sap.ui.define(
             aButtonSubmit,
             aDate,
             aDateFormat,
-            aDatum;
+            aDatum,
+            aTablearr = [];
           var oItems, j, oConnid, oFldate, oDate, oDateFormat, oDatum, a;
 
           aSelectedItems = this.byId("tableflightreserv").getSelectedItems();
@@ -90,6 +92,8 @@ sap.ui.define(
             aButtonSubmit.setVisible(true);
             for (i = 0; i < aSelectedItems.length; i++) {
               aFlight = aSelectedItems[i];
+              aTablearr.push(aFlight.getBindingContext().getPath());
+              sap.ui.getCore().myGlobalVar = aTablearr;
               aConnid = aFlight.getBindingContext().getProperty("Connid");
               aFldate = aFlight.getBindingContext().getProperty("Fldate");
               aDate = new Date(aFldate);

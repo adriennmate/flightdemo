@@ -11,6 +11,7 @@ sap.ui.define(
           oViewModel = new JSONModel();
 
           this.setModel(oViewModel, "Form");
+          var mySavedVar = sap.ui.getCore().myGlobalVar;
         },
       }
     );

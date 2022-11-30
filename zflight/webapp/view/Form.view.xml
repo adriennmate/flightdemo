@@ -1,6 +1,6 @@
 <core:FragmentDefinition controllerName="cust.matea.sap.flight.zflight.controller.Form" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:semantic="sap.f.semantic">
     <Page title="{i18n>formTitle}">
-        <VBox id="formVbox">
+        <VBox class="sapUiLargeMarginTop">
             <f:Form id="formFlightData" editable="false">
                 <f:title>
                     <core:Title text="{i18n>osszefoglalo}" />
@@ -11,38 +11,78 @@
                 <f:formContainers>
                     <f:FormContainer title="{i18n>elsoJarat}">
                         <f:formElements>
-                            <f:FormElement label="{i18n>legitarsasag}">
+                            <f:FormElement label="{i18n>carrId}">
                                 <f:fields>
-                                    <Text text="Név" id="nameText" />
+                                    <Text text="Név" id="carrIdText1" />
                                 </f:fields>
                             </f:FormElement>
-                            <f:FormElement label="Street">
+                            <f:FormElement label="{i18n>connId}">
                                 <f:fields>
-                                    <Text text="Utca Házszám" />
+                                    <Text text="Utca Házszám" id="connIdText1" />
                                 </f:fields>
                             </f:FormElement>
-                            <f:FormElement label="ZIP Code/City">
+                            <f:FormElement label="{i18n>indulas}">
                                 <f:fields>
-                                    <Text text="Irányítószám Város" />
+                                    <Text text="Irányítószám Város" id="indulasText1" />
                                 </f:fields>
                             </f:FormElement>
-                            <f:FormElement label="Country">
+                            <f:FormElement label="{i18n>erkezes}">
                                 <f:fields>
-                                    <Text text="Ország" id="countryText" />
+                                    <Text text="Ország" id="erkezesText1" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>flDate}">
+                                <f:fields>
+                                    <Text text="Ország" id="datumText1" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>depTime}">
+                                <f:fields>
+                                    <Text text="Ország" id="indulasIdoText1" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>arrTime}">
+                                <f:fields>
+                                    <Text text="Ország" id="erkezesIdoText1" />
                                 </f:fields>
                             </f:FormElement>
                         </f:formElements>
                     </f:FormContainer>
                     <f:FormContainer title="{i18n>masodikJarat}">
                         <f:formElements>
-                            <f:FormElement label="Web">
+                            <f:FormElement label="{i18n>carrId}">
                                 <f:fields>
-                                    <Text text="URL" />
+                                    <Text text="Név" id="carrIdText2" />
                                 </f:fields>
                             </f:FormElement>
-                            <f:FormElement label="Twitter">
+                            <f:FormElement label="{i18n>connId}">
                                 <f:fields>
-                                    <Text text="TWITTER" />
+                                    <Text text="Utca Házszám" id="connIdText2" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>indulas}">
+                                <f:fields>
+                                    <Text text="Irányítószám Város" id="indulasText2" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>erkezes}">
+                                <f:fields>
+                                    <Text text="Ország" id="erkezesText2" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>flDate}">
+                                <f:fields>
+                                    <Text text="Ország" id="datumText2" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>depTime}">
+                                <f:fields>
+                                    <Text text="Ország" id="indulasIdoText2" />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>arrTime}">
+                                <f:fields>
+                                    <Text text="Ország" id="erkezesIdoText2" />
                                 </f:fields>
                             </f:FormElement>
                         </f:formElements>
