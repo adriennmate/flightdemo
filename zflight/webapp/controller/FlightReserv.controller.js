@@ -67,12 +67,22 @@ sap.ui.define(
             i,
             j,
             aFlight,
+            aCarrid,
             aConnid,
+            aCityfrom,
+            aCountryfr,
+            aAirpfrom,
+            aCityto,
+            aCountryto,
+            aAirpto,
             aFldate,
+            aDeptime,
+            aArrtime,
             aButtonSubmit,
             aDate,
             aDateFormat,
             aDatum,
+            aArrayString,
             aTablearr = [];
           var oItems, j, oConnid, oFldate, oDate, oDateFormat, oDatum, a;
 
@@ -88,19 +98,35 @@ sap.ui.define(
           }
 
           if (aSelectedItems.length) {
+            aArrayString = '{ "flights": [ ';
             aButtonSubmit = this.byId("submitButton");
             aButtonSubmit.setVisible(true);
             for (i = 0; i < aSelectedItems.length; i++) {
               aFlight = aSelectedItems[i];
               aTablearr.push(aFlight.getBindingContext().getPath());
               sap.ui.getCore().myGlobalVar = aTablearr;
+              aCarrid = aFlight.getBindingContext().getProperty("Carrid");
               aConnid = aFlight.getBindingContext().getProperty("Connid");
+              aCountryfr = aFlight.getBindingContext().getProperty("Countryfr");
+              aCityfrom = aFlight.getBindingContext().getProperty("Cityfrom");
+              aAirpfrom = aFlight.getBindingContext().getProperty("Airpfrom");
+              aCountryto = aFlight.getBindingContext().getProperty("Countryto");
+              aCityto = aFlight.getBindingContext().getProperty("Cityto");
+              aAirpto = aFlight.getBindingContext().getProperty("Airpto");
               aFldate = aFlight.getBindingContext().getProperty("Fldate");
+              aDeptime = aFlight.getBindingContext().getProperty("Deptime");
+              aArrtime = aFlight.getBindingContext().getProperty("Arrtime");
               aDate = new Date(aFldate);
               aDateFormat = DateFormat.getDateInstance({
                 pattern: "yyyy.MM.dd",
               });
               aDatum = aDateFormat.format(aDate);
+              aArrayString =
+                aArrayString +
+                `{ "carrId": "${aCarrid}", "connId": "${aConnid}", "countryFrom": "${aCountryfr}" }`;
+              if (i !== aSelectedItems.length - 1) {
+                aArrayString = aArrayString + ",";
+              }
               for (j = 0; j < oItems.length; j++) {
                 if (oItems[j]._bGroupHeader == false) {
                   oConnid = oItems[j].getBindingContext().getProperty("Connid");
@@ -118,6 +144,7 @@ sap.ui.define(
                 }
               }
             }
+            aArrayString = aArrayString + "] }";
           } else {
             var oButtonSubmit = this.byId("submitButton");
             oButtonSubmit.setVisible(false);

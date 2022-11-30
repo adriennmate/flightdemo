@@ -7,11 +7,17 @@ sap.ui.define(
       "cust.matea.sap.flight.zflight.controller.Form",
       {
         onInit: function () {
+          var i, aRow;
+          var mySavedVar = sap.ui.getCore().myGlobalVar;
+          if (mySavedVar.length) {
+            for (i = 0; i < mySavedVar.length; i++) {
+              aRow = mySavedVar[i];
+            }
+          }
           var oViewModel;
-          oViewModel = new JSONModel();
+          oViewModel = new JSONModel({});
 
           this.setModel(oViewModel, "Form");
-          var mySavedVar = sap.ui.getCore().myGlobalVar;
         },
       }
     );
