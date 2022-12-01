@@ -46,16 +46,6 @@ sap.ui.define(
           this._showObject(oEvent.getSource());
         },
 
-        /**
-         * Event handler for navigating back.
-         * Navigate back in the browser history
-         * @public
-         */
-        onNavBack: function () {
-          // eslint-disable-next-line sap-no-history-manipulation
-          history.go(-1);
-        },
-
         onSearchCarrid: function (oEvent) {
           if (oEvent.getParameters().refreshButtonPressed) {
             // Search field's 'refresh' button has been pressed.

@@ -1,5 +1,5 @@
 <core:FragmentDefinition controllerName="cust.matea.sap.flight.zflight.controller.Form" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:semantic="sap.f.semantic">
-    <Page title="{i18n>formTitle}">
+    <Page title="{i18n>formTitle}" navButtonPress="onNavBack" showNavButton="true">
         <VBox class="sapUiLargeMarginTop">
             <f:Form id="formFlightData" editable="false">
                 <f:title>
@@ -9,80 +9,80 @@
                     <f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false" />
                 </f:layout>
                 <f:formContainers>
-                    <f:FormContainer title="{i18n>elsoJarat}">
+                    <f:FormContainer title="{i18n>elsoJarat}" id="flightsDataFrom">
                         <f:formElements>
                             <f:FormElement label="{i18n>carrId}">
                                 <f:fields>
-                                    <Text text="Név" id="carrIdText1" />
+                                    <Text text="{flightsFrom>/carrId}" id="carrIdText1" />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>connId}">
                                 <f:fields>
-                                    <Text text="Utca Házszám" id="connIdText1" />
+                                    <Text text="{flightsFrom>/connId}" id="connIdText1" />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>indulas}">
                                 <f:fields>
-                                    <Text text="Irányítószám Város" id="indulasText1" />
+                                    <Text text="{flightsFrom>/countryFrom} - {flightsFrom>/cityFrom} ({flightsFrom>/airpFrom})" id="indulasText1" />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>erkezes}">
                                 <f:fields>
-                                    <Text text="Ország" id="erkezesText1" />
+                                    <Text text="{flightsFrom>/countryTo} - {flightsFrom>/cityTo} ({flightsFrom>/airpTo})" id="erkezesText1" />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>flDate}">
                                 <f:fields>
-                                    <Text text="Ország" id="datumText1" />
+                                    <Text text="{flightsFrom>/flDate}" id="datumText1" />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>depTime}">
                                 <f:fields>
-                                    <Text text="Ország" id="indulasIdoText1" />
+                                    <Text text="{flightsFrom>/depTime}" id="indulasIdoText1" />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>arrTime}">
                                 <f:fields>
-                                    <Text text="Ország" id="erkezesIdoText1" />
+                                    <Text text="{flightsFrom>/arrTime}" id="erkezesIdoText1" />
                                 </f:fields>
                             </f:FormElement>
                         </f:formElements>
                     </f:FormContainer>
-                    <f:FormContainer title="{i18n>masodikJarat}">
+                    <f:FormContainer title="{i18n>masodikJarat}" id="flightsDataBack">
                         <f:formElements>
                             <f:FormElement label="{i18n>carrId}">
                                 <f:fields>
-                                    <Text text="Név" id="carrIdText2" />
+                                    <Text text="{flightsBack>/carrId}" id="carrIdText2" />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>connId}">
                                 <f:fields>
-                                    <Text text="Utca Házszám" id="connIdText2" />
+                                    <Text text="{flightsBack>/connId}" id="connIdText2" />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>indulas}">
                                 <f:fields>
-                                    <Text text="Irányítószám Város" id="indulasText2" />
+                                    <Text text="{flightsBack>/countryFrom} - {flightsBack>/cityFrom} ({flightsBack>/airpFrom})" id="indulasText2" />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>erkezes}">
                                 <f:fields>
-                                    <Text text="Ország" id="erkezesText2" />
+                                    <Text text="{flightsBack>/countryTo} - {flightsBack>/cityTo} ({flightsBack>/airpTo})" id="erkezesText2" />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>flDate}">
                                 <f:fields>
-                                    <Text text="Ország" id="datumText2" />
+                                    <Text text="{flightsBack>/flDate}" id="datumText2" />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>depTime}">
                                 <f:fields>
-                                    <Text text="Ország" id="indulasIdoText2" />
+                                    <Text text="{flightsBack>/depTime}" id="indulasIdoText2" />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>arrTime}">
                                 <f:fields>
-                                    <Text text="Ország" id="erkezesIdoText2" />
+                                    <Text text="{flightsBack>/arrTime}" id="erkezesIdoText2" />
                                 </f:fields>
                             </f:FormElement>
                         </f:formElements>

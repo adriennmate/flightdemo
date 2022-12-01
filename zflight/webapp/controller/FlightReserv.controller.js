@@ -59,35 +59,14 @@ sap.ui.define(
 
         onSubmit: function () {
           this.getRouter().navTo("form");
-          // this.getRouter().navTo("form", { carrId: this.Airline });
         },
 
         onSelection: function () {
-          var aSelectedItems,
-            i,
-            j,
-            aFlight,
-            aCarrid,
-            aConnid,
-            aCityfrom,
-            aCountryfr,
-            aAirpfrom,
-            aCityto,
-            aCountryto,
-            aAirpto,
-            aFldate,
-            aDeptime,
-            aArrtime,
-            aButtonSubmit,
-            aDate,
-            aDateFormat,
-            aDatum,
-            aArrayString,
-            aTablearr = [];
-          var oItems, j, oConnid, oFldate, oDate, oDateFormat, oDatum, a;
+          var i, j, a, aArrayString;
 
-          aSelectedItems = this.byId("tableflightreserv").getSelectedItems();
-          oItems = this.byId("tableflightreserv").getItems();
+          var aSelectedItems =
+            this.byId("tableflightreserv").getSelectedItems();
+          var oItems = this.byId("tableflightreserv").getItems();
 
           for (a = 0; a < oItems.length; a++) {
             if (oItems[a]._bGroupHeader == false) {
@@ -98,44 +77,71 @@ sap.ui.define(
           }
 
           if (aSelectedItems.length) {
+            var TZOffsetMs = new Date(0).getTimezoneOffset() * 60 * 1000;
             aArrayString = '{ "flights": [ ';
-            aButtonSubmit = this.byId("submitButton");
+            var aButtonSubmit = this.byId("submitButton");
             aButtonSubmit.setVisible(true);
             for (i = 0; i < aSelectedItems.length; i++) {
-              aFlight = aSelectedItems[i];
-              aTablearr.push(aFlight.getBindingContext().getPath());
-              sap.ui.getCore().myGlobalVar = aTablearr;
-              aCarrid = aFlight.getBindingContext().getProperty("Carrid");
-              aConnid = aFlight.getBindingContext().getProperty("Connid");
-              aCountryfr = aFlight.getBindingContext().getProperty("Countryfr");
-              aCityfrom = aFlight.getBindingContext().getProperty("Cityfrom");
-              aAirpfrom = aFlight.getBindingContext().getProperty("Airpfrom");
-              aCountryto = aFlight.getBindingContext().getProperty("Countryto");
-              aCityto = aFlight.getBindingContext().getProperty("Cityto");
-              aAirpto = aFlight.getBindingContext().getProperty("Airpto");
-              aFldate = aFlight.getBindingContext().getProperty("Fldate");
-              aDeptime = aFlight.getBindingContext().getProperty("Deptime");
-              aArrtime = aFlight.getBindingContext().getProperty("Arrtime");
-              aDate = new Date(aFldate);
-              aDateFormat = DateFormat.getDateInstance({
+              var aFlight = aSelectedItems[i];
+              var aCarrid = aFlight.getBindingContext().getProperty("Carrid");
+              var aConnid = aFlight.getBindingContext().getProperty("Connid");
+              var aCountryfr = aFlight
+                .getBindingContext()
+                .getProperty("Countryfr");
+              var aCityfrom = aFlight
+                .getBindingContext()
+                .getProperty("Cityfrom");
+              var aAirpfrom = aFlight
+                .getBindingContext()
+                .getProperty("Airpfrom");
+              var aCountryto = aFlight
+                .getBindingContext()
+                .getProperty("Countryto");
+              var aCityto = aFlight.getBindingContext().getProperty("Cityto");
+              var aAirpto = aFlight.getBindingContext().getProperty("Airpto");
+              var aFldate = aFlight.getBindingContext().getProperty("Fldate");
+              var aDeptime = aFlight
+                .getBindingContext()
+                .getProperty("Deptime/ms");
+              var aArrtime = aFlight
+                .getBindingContext()
+                .getProperty("Arrtime/ms");
+              var aDate = new Date(aFldate);
+              var aDateFormat = DateFormat.getDateInstance({
                 pattern: "yyyy.MM.dd",
               });
-              aDatum = aDateFormat.format(aDate);
+              var aDatum = aDateFormat.format(aDate);
+
+              var aTimeArr = new Date(aArrtime + TZOffsetMs);
+              var aTimeFormatArr = DateFormat.getTimeInstance({
+                pattern: "HH:mm:ss",
+              });
+              var aTimeArr = aTimeFormatArr.format(aTimeArr);
+
+              var aTimeDep = new Date(aDeptime + TZOffsetMs);
+              var aTimeFormatDep = DateFormat.getTimeInstance({
+                pattern: "HH:mm:ss",
+              });
+              var aTimeDep = aTimeFormatDep.format(aTimeDep);
               aArrayString =
                 aArrayString +
-                `{ "carrId": "${aCarrid}", "connId": "${aConnid}", "countryFrom": "${aCountryfr}" }`;
+                `{ "carrId": "${aCarrid}", "connId": "${aConnid}", "countryFrom": "${aCountryfr}", "cityFrom": "${aCityfrom}", "airpFrom": "${aAirpfrom}", "countryTo": "${aCountryto}", "cityTo": "${aCityto}", "airpTo": "${aAirpto}", "flDate": "${aDatum}", "depTime": "${aTimeDep}", "arrTime": "${aTimeArr}" }`;
               if (i !== aSelectedItems.length - 1) {
                 aArrayString = aArrayString + ",";
               }
               for (j = 0; j < oItems.length; j++) {
                 if (oItems[j]._bGroupHeader == false) {
-                  oConnid = oItems[j].getBindingContext().getProperty("Connid");
-                  oFldate = oItems[j].getBindingContext().getProperty("Fldate");
-                  oDate = new Date(oFldate);
-                  oDateFormat = DateFormat.getDateInstance({
+                  var oConnid = oItems[j]
+                    .getBindingContext()
+                    .getProperty("Connid");
+                  var oFldate = oItems[j]
+                    .getBindingContext()
+                    .getProperty("Fldate");
+                  var oDate = new Date(oFldate);
+                  var oDateFormat = DateFormat.getDateInstance({
                     pattern: "yyyy.MM.dd",
                   });
-                  oDatum = oDateFormat.format(oDate);
+                  var oDatum = oDateFormat.format(oDate);
                   if (aDatum == oDatum && aConnid !== oConnid) {
                     oItems[j]
                       .getMultiSelectControl(/* bCreateIfNotExist = */ true)
@@ -145,6 +151,10 @@ sap.ui.define(
               }
             }
             aArrayString = aArrayString + "] }";
+            sap.ui.getCore().myGlobalVar = aArrayString;
+            aArrayString = JSON.parse(aArrayString);
+            var oFlights = new JSONModel(aArrayString);
+            sap.ui.getCore().setModel(oFlights, "Form");
           } else {
             var oButtonSubmit = this.byId("submitButton");
             oButtonSubmit.setVisible(false);

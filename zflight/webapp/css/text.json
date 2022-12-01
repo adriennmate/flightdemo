@@ -1,6 +1,0 @@
-{
-  "flights": [
-    { "carrId": "AZ", "connId": "0788", "countryFrom": "IT" },
-    { "carrId": "AZ", "connId": "0786", "countryFrom": "JP" }
-  ]
-}

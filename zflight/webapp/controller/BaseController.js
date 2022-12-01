@@ -19,6 +19,16 @@ sap.ui.define(
         },
 
         /**
+         * Event handler for navigating back.
+         * Navigate back in the browser history
+         * @public
+         */
+        onNavBack: function () {
+          // eslint-disable-next-line sap-no-history-manipulation
+          history.go(-1);
+        },
+
+        /**
          * Convenience method for getting the view model by name.
          * @public
          * @param {string} [sName] the model name
