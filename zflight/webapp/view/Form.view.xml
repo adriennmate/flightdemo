@@ -1,6 +1,7 @@
 <core:FragmentDefinition controllerName="cust.matea.sap.flight.zflight.controller.Form" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:semantic="sap.f.semantic">
     <Page title="{i18n>formTitle}" navButtonPress="onNavBack" showNavButton="true">
         <VBox class="sapUiLargeMarginTop">
+            <Link text="{i18n>onBack}" press="onNavBack" id="onBack" />
             <f:Form id="formFlightData" editable="false">
                 <f:title>
                     <core:Title text="{i18n>osszefoglalo}" />

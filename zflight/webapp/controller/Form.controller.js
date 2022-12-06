@@ -1,5 +1,5 @@
 sap.ui.define(
-  ["./BaseController", , "sap/ui/model/json/JSONModel"],
+  ["./BaseController", "sap/ui/model/json/JSONModel"],
   function (BaseController, JSONModel) {
     "use strict";
 
@@ -7,24 +7,35 @@ sap.ui.define(
       "cust.matea.sap.flight.zflight.controller.Form",
       {
         onInit: function () {
+          const myRoute = this.getOwnerComponent().getRouter().getRoute("form");
+          myRoute.attachPatternMatched(this.onMyRoutePatternMatched, this);
+        },
+
+        onMyRoutePatternMatched(event) {
           var oViewModel;
           oViewModel = new JSONModel();
           this.setModel(oViewModel, "formView");
           var oFlights = sap.ui.getCore().getModel("Form");
-          var oFlightsFrom = oFlights.oData["flights"][0];
-          var oFrom = new JSONModel(oFlightsFrom);
-          this.getView().setModel(oFrom, "flightsFrom");
-          if (oFlights.oData["flights"][1]) {
-            var oFlightsBack = oFlights.oData["flights"][1];
-            var oBack = new JSONModel(oFlightsBack);
-            this.getView().setModel(oBack, "flightsBack");
+          if (oFlights) {
+            this.byId("formFlightData").setVisible(true);
+            this.byId("onBack").setVisible(false);
+            if (oFlights.oData["flights"][0]) {
+              var oFlightsFrom = oFlights.oData["flights"][0];
+              var oFrom = new JSONModel(oFlightsFrom);
+              this.getView().setModel(oFrom, "flightsFrom");
+            } else {
+              this.byId("flightsDataFrom").setVisible(false);
+            }
+            if (oFlights.oData["flights"][1]) {
+              var oFlightsBack = oFlights.oData["flights"][1];
+              var oBack = new JSONModel(oFlightsBack);
+              this.getView().setModel(oBack, "flightsBack");
+            } else {
+              this.byId("flightsDataBack").setVisible(false);
+            }
           } else {
-            this.byId("flightsDataBack").setVisible(false);
+            this.byId("formFlightData").setVisible(false);
           }
-        },
-
-        onBeforeRendering: function () {
-          var a = 5;
         },
 
         onNavBack: function () {

@@ -100,3 +100,10 @@
 #application-custmateasapflightzflight-display-component---flightReserv--cityFromLabel-text{
    top: 70%; 
 }
+
+#application-custmateasapflightzflight-display-component---form--onBack{
+   font-size: 1.3rem;
+   margin-left: 50%;
+   margin-top: 10%;
+   transform: translate(-50%, -50%); 
+}
